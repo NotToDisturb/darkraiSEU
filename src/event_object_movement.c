@@ -7462,7 +7462,7 @@ static void GetAllGroundEffectFlags_OnSpawn(struct ObjectEvent *objEvent, u32 *f
     GetGroundEffectFlags_ShallowFlowingWater(objEvent, flags);
     GetGroundEffectFlags_ShortGrass(objEvent, flags);
     GetGroundEffectFlags_HotSprings(objEvent, flags);
-	GetGroundEffectFlags_Shadow(objEvent, flags);
+    GetGroundEffectFlags_Shadow(objEvent, flags);
 }
 
 static void GetAllGroundEffectFlags_OnBeginStep(struct ObjectEvent *objEvent, u32 *flags)
@@ -7477,7 +7477,7 @@ static void GetAllGroundEffectFlags_OnBeginStep(struct ObjectEvent *objEvent, u3
     GetGroundEffectFlags_Puddle(objEvent, flags);
     GetGroundEffectFlags_ShortGrass(objEvent, flags);
     GetGroundEffectFlags_HotSprings(objEvent, flags);
-	GetGroundEffectFlags_Shadow(objEvent, flags);
+    GetGroundEffectFlags_Shadow(objEvent, flags);
 }
 
 static void GetAllGroundEffectFlags_OnFinishStep(struct ObjectEvent *objEvent, u32 *flags)
@@ -7491,7 +7491,7 @@ static void GetAllGroundEffectFlags_OnFinishStep(struct ObjectEvent *objEvent, u
     GetGroundEffectFlags_HotSprings(objEvent, flags);
     GetGroundEffectFlags_Seaweed(objEvent, flags);
     GetGroundEffectFlags_JumpLanding(objEvent, flags);
-	GetGroundEffectFlags_Shadow(objEvent, flags);
+    GetGroundEffectFlags_Shadow(objEvent, flags);
 }
 
 static void ObjectEventUpdateMetatileBehaviors(struct ObjectEvent *objEvent)
@@ -7690,73 +7690,73 @@ static void GetGroundEffectFlags_JumpLanding(struct ObjectEvent *objEvent, u32 *
 }
 
 static void GetGroundEffectFlags_Shadow(struct ObjectEvent *objEvent, u32 *flags)
-{	
-	//List of event objects that will show no shadow
-	static const u8 disallowIds[] = {
+{    
+    //List of event objects that will show no shadow
+    static const u8 disallowIds[] = {
         OBJ_EVENT_GFX_TRUCK,
-		OBJ_EVENT_GFX_SS_TIDAL,
+        OBJ_EVENT_GFX_SS_TIDAL,
     };
-	
-	//List of weathers that will show no shadow
-	static const u8 disallowWeathers[] = {
+    
+    //List of weathers that will show no shadow
+    static const u8 disallowWeathers[] = {
         WEATHER_RAIN,
-		WEATHER_FOG_HORIZONTAL,
+        WEATHER_FOG_HORIZONTAL,
     };
-	
-	typedef bool8 (*MetatileFunc)(u8);
-	
-	//List of metatiles that will show no shadow
-	static const MetatileFunc disallowMetatiles[] = {
+    
+    typedef bool8 (*MetatileFunc)(u8);
+    
+    //List of metatiles that will show no shadow
+    static const MetatileFunc disallowMetatiles[] = {
         MetatileBehavior_IsTallGrass,
         MetatileBehavior_IsLongGrass,
     };
-	
-	u8 i;
-	bool8 currWeatherDisallowed = FALSE;
-	bool8 nextWeatherDisallowed = FALSE;
-	
-	//ObjectEvent id check
+    
+    u8 i;
+    bool8 currWeatherDisallowed = FALSE;
+    bool8 nextWeatherDisallowed = FALSE;
+    
+    //ObjectEvent id check
     for (i = 0; i < ARRAY_COUNT(disallowIds); i++)
     {
         if (disallowIds[i] == objEvent->graphicsId)
         {
-			objEvent->hasShadow = FALSE;
+            objEvent->hasShadow = FALSE;
             return;
-		}
+        }
     }
-	
-	//Weather check
-	for (i = 0; i < ARRAY_COUNT(disallowWeathers); i++)
+    
+    //Weather check
+    for (i = 0; i < ARRAY_COUNT(disallowWeathers); i++)
     {
-		if(gWeather.currWeather == disallowWeathers[i])
-		{
-			currWeatherDisallowed = TRUE;
-			//If the weather hasn't changed completely, no shadow will show
-			//Force "nextWeatherDisallowed" to avoid duplicated return statements
-			if(gWeather.weatherChangeComplete == FALSE)
-				nextWeatherDisallowed = TRUE;
-		}
-		if(gWeather.currWeather == disallowWeathers[i])
-			nextWeatherDisallowed = TRUE;
-		//Possibly reduce loop iterations
+        if(gWeather.currWeather == disallowWeathers[i])
+        {
+            currWeatherDisallowed = TRUE;
+            //If the weather hasn't changed completely, no shadow will show
+            //Force "nextWeatherDisallowed" to avoid duplicated return statements
+            if(gWeather.weatherChangeComplete == FALSE)
+                nextWeatherDisallowed = TRUE;
+        }
+        if(gWeather.currWeather == disallowWeathers[i])
+            nextWeatherDisallowed = TRUE;
+        //Possibly reduce loop iterations
         if (currWeatherDisallowed == TRUE && nextWeatherDisallowed == TRUE)
         {
             objEvent->hasShadow = FALSE;
             return;
         }
     }
-	
-	//Metatile check
+    
+    //Metatile check
     for (i = 0; i < ARRAY_COUNT(disallowMetatiles); i++)
     {
         if (disallowMetatiles[i](objEvent->currentMetatileBehavior))
         {
-			objEvent->hasShadow = FALSE;
+            objEvent->hasShadow = FALSE;
             return;
-		}
+        }
     }
-	
-	*flags |= GROUND_EFFECT_SHADOW;
+    
+    *flags |= GROUND_EFFECT_SHADOW;
 }
 
 static u8 ObjectEventCheckForReflectiveSurface(struct ObjectEvent *objEvent)
@@ -8197,7 +8197,7 @@ static void (*const sGroundEffectFuncs[])(struct ObjectEvent *objEvent, struct S
     GroundEffect_ShortGrass,
     GroundEffect_HotSprings,
     GroundEffect_Seaweed,
-	GroundEffect_Shadow
+    GroundEffect_Shadow
 };
 
 static void DoFlaggedGroundEffects(struct ObjectEvent *objEvent, struct Sprite *sprite, u32 flags)
