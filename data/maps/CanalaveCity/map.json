@@ -1,0 +1,30 @@
+{
+  "id": "MAP_CANALAVE_CITY",
+  "name": "CanalaveCity",
+  "layout": "LAYOUT_CANALAVE_CITY",
+  "music": "MUS_DAN02",
+  "region_map_section": "MAPSEC_LITTLEROOT_TOWN",
+  "requires_flash": false,
+  "weather": "WEATHER_SUNNY",
+  "map_type": "MAP_TYPE_NONE",
+  "allow_cycling": false,
+  "allow_escaping": false,
+  "allow_running": true,
+  "show_map_name": true,
+  "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
+  "connections": 0,
+  "object_events": [
+
+  ],
+  "warp_events": [
+
+  ],
+  "coord_events": [
+
+  ],
+  "bg_events": [
+
+  ],
+  "allow_bike": "",
+  "allow_escape_rope": ""
+}

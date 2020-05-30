@@ -4410,6 +4410,16 @@
       "secondary_tileset": "gTileset_MysteryEventsHouse",
       "border_filepath": "data/layouts/SootopolisCity_MysteryEventsHouse_1F_StairsUnblocked/border.bin",
       "blockdata_filepath": "data/layouts/SootopolisCity_MysteryEventsHouse_1F_StairsUnblocked/map.bin"
+    },
+    {
+      "id": "LAYOUT_CANALAVE_CITY",
+      "name": "CanalaveCity_Layout",
+      "width": 38,
+      "height": 24,
+      "primary_tileset": "gTileset_Outside",
+      "secondary_tileset": "gTileset_Canalave",
+      "border_filepath": "data/layouts/CanalaveCity/border.bin",
+      "blockdata_filepath": "data/layouts/CanalaveCity/map.bin"
     }
   ]
 }

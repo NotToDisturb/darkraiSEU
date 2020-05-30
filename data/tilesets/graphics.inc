@@ -1729,3 +1729,43 @@ gTilesetPalettes_UnionRoom:: @ 8395678
 	.align 2
 gTilesetTiles_UnionRoom:: @ 8395878
 	.incbin "data/tilesets/secondary/union_room/tiles.4bpp.lz"
+
+	.align 2
+gTilesetPalettes_Outside::
+	.incbin "data/tilesets/primary/outside/palettes/00.gbapal"
+	.incbin "data/tilesets/primary/outside/palettes/01.gbapal"
+	.incbin "data/tilesets/primary/outside/palettes/02.gbapal"
+	.incbin "data/tilesets/primary/outside/palettes/03.gbapal"
+	.incbin "data/tilesets/primary/outside/palettes/04.gbapal"
+	.incbin "data/tilesets/primary/outside/palettes/05.gbapal"
+	.incbin "data/tilesets/primary/outside/palettes/06.gbapal"
+	.incbin "data/tilesets/primary/outside/palettes/07.gbapal"
+	.incbin "data/tilesets/primary/outside/palettes/08.gbapal"
+	.incbin "data/tilesets/primary/outside/palettes/09.gbapal"
+	.incbin "data/tilesets/primary/outside/palettes/10.gbapal"
+	.incbin "data/tilesets/primary/outside/palettes/11.gbapal"
+	.incbin "data/tilesets/primary/outside/palettes/12.gbapal"
+
+	.align 2
+gTilesetTiles_Outside::
+	.incbin "data/tilesets/primary/outside/tiles.4bpp.lz"
+
+	.align 2
+gTilesetPalettes_Canalave::
+	.incbin "data/tilesets/secondary/canalave/palettes/00.gbapal"
+	.incbin "data/tilesets/secondary/canalave/palettes/01.gbapal"
+	.incbin "data/tilesets/secondary/canalave/palettes/02.gbapal"
+	.incbin "data/tilesets/secondary/canalave/palettes/03.gbapal"
+	.incbin "data/tilesets/secondary/canalave/palettes/04.gbapal"
+	.incbin "data/tilesets/secondary/canalave/palettes/05.gbapal"
+	.incbin "data/tilesets/secondary/canalave/palettes/06.gbapal"
+	.incbin "data/tilesets/secondary/canalave/palettes/07.gbapal"
+	.incbin "data/tilesets/secondary/canalave/palettes/08.gbapal"
+	.incbin "data/tilesets/secondary/canalave/palettes/09.gbapal"
+	.incbin "data/tilesets/secondary/canalave/palettes/10.gbapal"
+	.incbin "data/tilesets/secondary/canalave/palettes/11.gbapal"
+	.incbin "data/tilesets/secondary/canalave/palettes/12.gbapal"
+
+	.align 2
+gTilesetTiles_Canalave::
+	.incbin "data/tilesets/secondary/canalave/tiles.4bpp.lz"
