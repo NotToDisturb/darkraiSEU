@@ -1,0 +1,98 @@
+const PLAYER = OBJ_EVENT_ID_PLAYER
+const RUPERT = 1
+const BEN = 4
+const GRUNT_1 = 5
+const GRUNT_2 = 2
+const GRUNT_3 = 3
+const STUNKY = 6
+const WINGULL = 7
+
+mapscripts CanalaveCity_MapScripts {
+    MAP_SCRIPT_ON_WARP_INTO_MAP_TABLE [
+        VAR_CANALAVE_STATE, 0 {
+            hideobjectat(PLAYER, MAP_CANALAVE_CITY)
+        }
+    ]
+    MAP_SCRIPT_ON_FRAME_TABLE [
+        VAR_CANALAVE_STATE, 0: CanalaveCity_BeginStartingCutscene
+    ]
+}
+
+script CanalaveCity_BeginStartingCutscene {
+    setvar(VAR_CANALAVE_STATE, 1)
+    applymovement(PLAYER, WalkOutOfHouseCamera)
+    applymovement(RUPERT, WalkOutOfHouseRupert)
+    waitmovement(PLAYER)
+    delay(4)
+    msgbox(format("{COLOR BLUE}Rupert: {COLOR DARK_GREY}Ben! {PAUSE 4}What's going on!"), MSGBOX_DEFAULT)
+    closemessage
+    applymovement(PLAYER, MoveToGrunts)
+    waitmovement(PLAYER)
+    applymovement(BEN, Common_Movement_ExclamationMark)
+    msgbox(format("{COLOR BLUE}Ben: {COLOR DARK_GREY}Get back inside Rupert!\nThey're trying to take the dock!"), MSGBOX_DEFAULT)
+    applymovement(GRUNT_1, GruntGetAttention)
+    msgbox(format("{COLOR RED}Grunt 1: {COLOR DARK_GREY}Damn right we are! And you can't do anything to stop us."), MSGBOX_DEFAULT)
+    applymovement(GRUNT_2, GruntGetAttention)
+    msgbox(format("{COLOR RED}Grunt 2: {COLOR DARK_GREY}Give us the key to the boat now, old man."), MSGBOX_DEFAULT)
+    msgbox(format("{COLOR BLUE}Ben: {COLOR DARK_GREY}In your dreams! Rupert, get inside and lock the door, now!"), MSGBOX_DEFAULT)
+    applymovement(GRUNT_3, GruntGetAttention)
+    msgbox(format("{COLOR RED}Grunt 3: {COLOR DARK_GREY}Enough of this. {PAUSE 8}Just take him out."), MSGBOX_DEFAULT)
+    msgbox(format("{COLOR RED}Grunt 1: {COLOR DARK_GREY}Right.{PAUSE 8}.{PAUSE 8}.\nStunky! Use Feint attack!"), MSGBOX_DEFAULT)
+    msgbox(format("{COLOR LIGHT_RED}Stunky: {COLOR DARK_GREY}Stuunk!"), MSGBOX_DEFAULT)
+    applymovement(BEN, Common_Movement_ExclamationMark)
+    msgbox(format("{COLOR BLUE}Ben: {COLOR DARK_GREY}Rupert, go!"), MSGBOX_DEFAULT)
+    closemessage
+    applymovement(RUPERT, Common_Movement_ExclamationMark)
+    applymovement(STUNKY, FeintAttack)
+    applymovement(PLAYER, MoveToRupert)
+    waitmovement(PLAYER)
+    applymovement(PLAYER, WalkIntoHouse)
+    applymovement(RUPERT, WalkIntoHouse)
+    waitmovement(PLAYER)
+    end
+}
+
+movement WalkOutOfHouseRupert {
+    walk_down * 2
+    walk_left * 5
+    face_up
+    delay_16
+    emote_exclamation_mark
+    delay_1
+    walk_fast_up * 2
+}
+
+movement WalkOutOfHouseCamera {
+    walk_down * 2
+    walk_left * 5
+    face_up
+    delay_16
+    walk_fast_up * 3
+}
+
+movement MoveToGrunts {
+    walk_fast_up * 4
+}
+
+movement GruntGetAttention {
+    jump_in_place_down * 2
+}
+
+movement FeintAttack {
+    lock_facing_direction
+    jump_in_place_down * 2
+    jump_down
+    jump_up
+}
+
+movement MoveToRupert {
+    walk_fast_down * 5
+}
+
+movement WalkIntoHouse {
+    lock_facing_direction
+    walk_down * 2
+    unlock_facing_direction
+    walk_fast_right * 5
+    walk_fast_up * 2
+}
