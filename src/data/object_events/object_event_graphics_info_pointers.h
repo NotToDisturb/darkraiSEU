@@ -1,3 +1,4 @@
+/*<<<<<<< HEAD
 const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_BrendanNormal;
 const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_BrendanMachBike;
 const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_BrendanSurfing;
@@ -250,6 +251,8 @@ const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Rupert;
 const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_RupertSon;
 const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Ben;
 
+=======
+>>>>>>> 60f89c0319d5772c1ab179b8046a28febfd6d797*/
 
 const struct ObjectEventGraphicsInfo *const gObjectEventGraphicsInfoPointers[NUM_OBJ_EVENT_GFX] = {
     [OBJ_EVENT_GFX_BRENDAN_NORMAL] =           &gObjectEventGraphicsInfo_BrendanNormal,
