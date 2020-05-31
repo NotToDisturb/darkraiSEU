@@ -436,6 +436,10 @@ const u8 gInitialMovementTypeFacingDirections[] = {
 #define OBJ_EVENT_PAL_TAG_32 0x1121
 #define OBJ_EVENT_PAL_TAG_33 0x1122
 #define OBJ_EVENT_PAL_TAG_34 0x1123
+#define OBJ_EVENT_PAL_TAG_35 0x1124
+#define OBJ_EVENT_PAL_TAG_36 0x1125
+#define OBJ_EVENT_PAL_TAG_37 0x1126
+#define OBJ_EVENT_PAL_TAG_38 0x1127
 #define OBJ_EVENT_PAL_TAG_NONE 0x11FF
 
 #include "data/object_events/object_event_graphics_info_pointers.h"
@@ -482,6 +486,10 @@ const struct SpritePalette sObjectEventSpritePalettes[] = {
     {gObjectEventPalette32, OBJ_EVENT_PAL_TAG_32},
     {gObjectEventPalette33, OBJ_EVENT_PAL_TAG_33},
     {gObjectEventPalette34, OBJ_EVENT_PAL_TAG_34},
+    {gObjectEventPalette35, OBJ_EVENT_PAL_TAG_35},
+    {gObjectEventPalette36, OBJ_EVENT_PAL_TAG_36},
+    {gObjectEventPalette37, OBJ_EVENT_PAL_TAG_37},
+    {gObjectEventPalette38, OBJ_EVENT_PAL_TAG_38},
     {NULL,                  0x0000},
 };
 
@@ -7714,6 +7722,10 @@ static void GetGroundEffectFlags_Shadow(struct ObjectEvent *objEvent, u32 *flags
     u8 i;
     bool8 currWeatherDisallowed = FALSE;
     bool8 nextWeatherDisallowed = FALSE;
+    
+    //ObjectEvent is invisible, don't show shadow
+    if(objEvent->invisible == TRUE)
+        return;
     
     //ObjectEvent id check
     for (i = 0; i < ARRAY_COUNT(disallowIds); i++)

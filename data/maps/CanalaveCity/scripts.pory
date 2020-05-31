@@ -31,11 +31,14 @@ script CanalaveCity_BeginStartingCutscene {
     applymovement(BEN, Common_Movement_ExclamationMark)
     msgbox(format("{COLOR BLUE}Ben: {COLOR DARK_GREY}Get back inside Rupert!\nThey're trying to take the dock!"), MSGBOX_DEFAULT)
     applymovement(GRUNT_1, GruntGetAttention)
+    waitmovement(GRUNT_1)
     msgbox(format("{COLOR RED}Grunt 1: {COLOR DARK_GREY}Damn right we are! And you can't do anything to stop us."), MSGBOX_DEFAULT)
     applymovement(GRUNT_2, GruntGetAttention)
+    waitmovement(GRUNT_2)
     msgbox(format("{COLOR RED}Grunt 2: {COLOR DARK_GREY}Give us the key to the boat now, old man."), MSGBOX_DEFAULT)
     msgbox(format("{COLOR BLUE}Ben: {COLOR DARK_GREY}In your dreams! Rupert, get inside and lock the door, now!"), MSGBOX_DEFAULT)
     applymovement(GRUNT_3, GruntGetAttention)
+    waitmovement(GRUNT_3)
     msgbox(format("{COLOR RED}Grunt 3: {COLOR DARK_GREY}Enough of this. {PAUSE 8}Just take him out."), MSGBOX_DEFAULT)
     msgbox(format("{COLOR RED}Grunt 1: {COLOR DARK_GREY}Right.{PAUSE 8}.{PAUSE 8}.\nStunky! Use Feint attack!"), MSGBOX_DEFAULT)
     msgbox(format("{COLOR LIGHT_RED}Stunky: {COLOR DARK_GREY}Stuunk!"), MSGBOX_DEFAULT)
@@ -79,10 +82,9 @@ movement GruntGetAttention {
 }
 
 movement FeintAttack {
-    lock_facing_direction
     jump_in_place_down * 2
     jump_down
-    jump_up
+    jump_up_backwards
 }
 
 movement MoveToRupert {
@@ -90,9 +92,7 @@ movement MoveToRupert {
 }
 
 movement WalkIntoHouse {
-    lock_facing_direction
-    walk_down * 2
-    unlock_facing_direction
+    walk_down_backwards * 2
     walk_fast_right * 5
     walk_fast_up * 2
 }

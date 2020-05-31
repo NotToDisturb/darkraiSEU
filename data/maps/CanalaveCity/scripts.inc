@@ -29,11 +29,14 @@ CanalaveCity_BeginStartingCutscene::
 	applymovement 4, Common_Movement_ExclamationMark
 	msgbox CanalaveCity_BeginStartingCutscene_Text_1, MSGBOX_DEFAULT
 	applymovement 5, GruntGetAttention
+	waitmovement 5
 	msgbox CanalaveCity_BeginStartingCutscene_Text_2, MSGBOX_DEFAULT
 	applymovement 2, GruntGetAttention
+	waitmovement 2
 	msgbox CanalaveCity_BeginStartingCutscene_Text_3, MSGBOX_DEFAULT
 	msgbox CanalaveCity_BeginStartingCutscene_Text_4, MSGBOX_DEFAULT
 	applymovement 3, GruntGetAttention
+	waitmovement 3
 	msgbox CanalaveCity_BeginStartingCutscene_Text_5, MSGBOX_DEFAULT
 	msgbox CanalaveCity_BeginStartingCutscene_Text_6, MSGBOX_DEFAULT
 	msgbox CanalaveCity_BeginStartingCutscene_Text_7, MSGBOX_DEFAULT
@@ -94,11 +97,10 @@ GruntGetAttention:
 	step_end
 
 FeintAttack:
-	lock_facing_direction
 	jump_in_place_down
 	jump_in_place_down
 	jump_down
-	jump_up
+	jump_up_backwards
 	step_end
 
 MoveToRupert:
@@ -110,10 +112,8 @@ MoveToRupert:
 	step_end
 
 WalkIntoHouse:
-	lock_facing_direction
-	walk_down
-	walk_down
-	unlock_facing_direction
+	walk_down_backwards
+	walk_down_backwards
 	walk_fast_right
 	walk_fast_right
 	walk_fast_right

@@ -360,3 +360,12 @@ const u32 gObjectEventPic_Lugia[] = INCBIN_U32("graphics/object_events/pics/poke
 const u16 gObjectEventPalette32[] = INCBIN_U16("graphics/object_events/palettes/32.gbapal");
 const u32 gObjectEventPic_HoOh[] = INCBIN_U32("graphics/object_events/pics/pokemon/ho_oh.4bpp");
 const u16 gObjectEventPalette31[] = INCBIN_U16("graphics/object_events/palettes/31.gbapal");
+
+const u32 gObjectEventPic_GalacticMemberM[] = INCBIN_U32("graphics/object_events/pics/people/team_galactic/grunt_m.4bpp");
+const u32 gObjectEventPic_Rupert[] = INCBIN_U32("graphics/object_events/pics/people/rupert.4bpp");
+const u32 gObjectEventPic_RupertSon[] = INCBIN_U32("graphics/object_events/pics/people/rupert_son.4bpp");
+const u32 gObjectEventPic_Ben[] = INCBIN_U32("graphics/object_events/pics/people/ben.4bpp");
+const u16 gObjectEventPalette35[] = INCBIN_U16("graphics/object_events/palettes/35.gbapal");
+const u16 gObjectEventPalette36[] = INCBIN_U16("graphics/object_events/palettes/36.gbapal");
+const u16 gObjectEventPalette37[] = INCBIN_U16("graphics/object_events/palettes/37.gbapal");
+const u16 gObjectEventPalette38[] = INCBIN_U16("graphics/object_events/palettes/38.gbapal");
