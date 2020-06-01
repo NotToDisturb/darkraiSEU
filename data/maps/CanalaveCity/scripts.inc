@@ -23,7 +23,7 @@ CanalaveCity_MapScripts_MAP_SCRIPT_ON_WARP_INTO_MAP_TABLE_1:
 	hideobjectat 7, MAP_CANALAVE_CITY
 	removeobject 5, MAP_CANALAVE_CITY
 	setobjectxyperm 5, 19, 13
-	setobjectmovementtype 5, MOVEMENT_TYPE_WANDER_UP_AND_DOWN
+	setobjectmovementtype 5, MOVEMENT_TYPE_FACE_LEFT
 	addobject 5, MAP_CANALAVE_CITY
 	removeobject 2, MAP_CANALAVE_CITY
 	setobjectxyperm 2, 18, 11
@@ -191,6 +191,7 @@ WalkIntoHouse:
 	step_end
 
 CanalaveCity_BarrySavesTheDay::
+	lockall
 	applymovement OBJ_EVENT_ID_PLAYER, BarryWalkFromGym
 	applymovement 8, BarryWalkFromGym
 	applymovement 9, BarryWalkFromGym
@@ -203,6 +204,7 @@ CanalaveCity_BarrySavesTheDay::
 	closemessage
 	applymovement OBJ_EVENT_ID_PLAYER, BarryShortLeft
 	applymovement 8, BarryShortLeft
+	waitmovement OBJ_EVENT_ID_PLAYER
 	delay 16
 	msgbox CanalaveCity_BarrySavesTheDay_Text_1, MSGBOX_DEFAULT
 	applymovement 8, ObjectRealizationDown
@@ -211,8 +213,8 @@ CanalaveCity_BarrySavesTheDay::
 	closemessage
 	delay 4
 	message CanalaveCity_BarrySavesTheDay_Text_3
-	waitmovement OBJ_EVENT_ID_PLAYER
 	applymovement 9, ObjectGetAttentionLeft
+	waitmovement 9
 	waitmessage
 	waitbuttonpress
 	closemessage
@@ -244,12 +246,10 @@ CanalaveCity_BarrySavesTheDay::
 	delay 24
 	msgbox CanalaveCity_BarrySavesTheDay_Text_7, MSGBOX_DEFAULT
 	closemessage
-	delay 90
 	applymovement 8, ObjectRealizationDownExclamation
-	waitmovement 8
 	delay 16
 	message CanalaveCity_BarrySavesTheDay_Text_8
-	delay 32
+	delay 4
 	applymovement 9, ObjectRealizationLeftExclamation
 	waitmovement 9
 	waitmessage
@@ -259,9 +259,10 @@ CanalaveCity_BarrySavesTheDay::
 	applymovement OBJ_EVENT_ID_PLAYER, Common_Movement_WalkDown2
 	applymovement 8, Common_Movement_WalkDown2
 	waitmovement OBJ_EVENT_ID_PLAYER
+	turnobject 9, DIR_SOUTH
 	delay 32
 	applymovement 9, Common_Movement_QuestionMark
-	delay 16
+	delay 32
 	turnobject 8, DIR_NORTH
 	msgbox CanalaveCity_BarrySavesTheDay_Text_9, MSGBOX_DEFAULT
 	closemessage
@@ -289,7 +290,20 @@ CanalaveCity_BarrySavesTheDay::
 	applymovement 8, Common_Movement_WalkRight2
 	applymovement 9, Common_Movement_WalkRight2
 	waitmovement OBJ_EVENT_ID_PLAYER
+	applymovement OBJ_EVENT_ID_PLAYER, BarryShortRight
+	applymovement 8, BarryShortRight
+	applymovement 9, BarryShortRight
+	waitmovement OBJ_EVENT_ID_PLAYER
+	delay 16
+	message CanalaveCity_BarrySavesTheDay_Text_12
+	delay 4
+	applymovement 8, Common_Movement_QuestionMark
+	waitmovement 8
+	waitmessage
+	waitbuttonpress
+	closemessage
 	setvar VAR_CANALAVE_STATE, 4
+	releaseall
 	end
 
 
@@ -316,8 +330,8 @@ ObjectRealizationDown:
 	step_end
 
 ObjectRealizationDownExclamation:
-	emote_exclamation_mark
 	jump_in_place_down
+	emote_exclamation_mark
 	step_end
 
 ObjectRealizationLeftExclamation:
@@ -421,3 +435,9 @@ CanalaveCity_BarrySavesTheDay_Text_10:
 CanalaveCity_BarrySavesTheDay_Text_11:
 	.string "{COLOR BLUE}Barry: {COLOR DARK_GREY}Gotta go to the docks to get to\n"
 	.string "Iron Island! Come on!$"
+
+CanalaveCity_BarrySavesTheDay_Text_12:
+	.string "{COLOR BLUE}Barry: {COLOR DARK_GREY}What is Team Galactic doing\n"
+	.string "around here?\p"
+	.string "Well, hopefully they aren't up to\n"
+	.string "anything bad.$"

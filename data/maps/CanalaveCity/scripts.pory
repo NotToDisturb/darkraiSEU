@@ -26,7 +26,7 @@ mapscripts CanalaveCity_MapScripts {
             
             removeobject(GRUNT_1, MAP_CANALAVE_CITY)
             setobjectxyperm(GRUNT_1, 19, 13)
-            setobjectmovementtype(GRUNT_1, MOVEMENT_TYPE_WANDER_UP_AND_DOWN)
+            setobjectmovementtype(GRUNT_1, MOVEMENT_TYPE_FACE_LEFT)
             addobject(GRUNT_1, MAP_CANALAVE_CITY)
             
             removeobject(GRUNT_2, MAP_CANALAVE_CITY)
@@ -171,34 +171,42 @@ movement WalkIntoHouse {
     walk_fast_up * 1
 }
 
-
 script CanalaveCity_BarrySavesTheDay {
+    lockall
+    //Move everything down
     applymovement(PLAYER, BarryWalkFromGym)
     applymovement(BARRY, BarryWalkFromGym)
     applymovement(PRINPLUP, BarryWalkFromGym)
     delay(16)
+    //Start Byron strong message. It starts while walking.
     message(format("{COLOR BLUE}Barry: {COLOR DARK_GREY}Oh man, Byron is so strong{PAUSE 4}.{PAUSE 4}.{PAUSE 4}.{PAUSE 4}\nHe beat us without breaking a sweat!"))
     waitmovement(PLAYER)
     applymovement(PRINPLUP, PrinplupFaceBarry)
     waitmessage
     waitbuttonpress
     closemessage
+    //End Byron message
+    //Move Barry to left
     applymovement(PLAYER, BarryShortLeft)
     applymovement(BARRY, BarryShortLeft)
+    waitmovement(PLAYER)
     delay(16)
+    //Mini speech
     msgbox(format("{COLOR BLUE}Barry: {COLOR DARK_GREY}We sure can't can beat him yet, {PAUSE 8}\nI'm still a long way from his level."), MSGBOX_DEFAULT)
     applymovement(BARRY, ObjectRealizationDown)
     delay(16)
     msgbox(format("But I'm not giving up! {PAUSE 4}No sir!\n {PAUSE 8}We're gonna train together!\p That's right! Even harder than before! {PAUSE 8}Hear that Prinplup?"), MSGBOX_DEFAULT)
     closemessage
     delay(4)
+    //Prinplup jumps while it says it's cry
     message(format("{COLOR BLUE}Prinplup: {COLOR DARK_GREY}Prinp! Prinp!"))
-    waitmovement(PLAYER)
     applymovement(PRINPLUP, ObjectGetAttentionLeft)
+    waitmovement(PRINPLUP)
     waitmessage
     waitbuttonpress
     closemessage
     delay(16)
+    //Ask Prinplup for advice while moving
     message(format("{COLOR BLUE}Barry: {COLOR DARK_GREY}We still need to find where to train though. {PAUSE 8}What do you think?"))
     applymovement(PLAYER, BarryShortRight)
     applymovement(BARRY, BarryShortRight)
@@ -211,12 +219,14 @@ script CanalaveCity_BarrySavesTheDay {
     waitmessage
     waitbuttonpress
     closemessage
+    //End movement and Prinplup doesn't speak
     delay(16)
     message(format("{COLOR BLUE}Prinplup: {COLOR DARK_GREY}{PAUSE 8}.{PAUSE 32}.{PAUSE 32}.{PAUSE 32}"))
     waitmessage
     waitbuttonpress
     closemessage
     delay(32)
+    //Prinplup doesn't speak, Barry moves away
     msgbox(format("{COLOR BLUE}Barry: {COLOR DARK_GREY}Right. {PAUSE 32}\nI keep forgetting you can't speak."), MSGBOX_DEFAULT)
     closemessage
     applymovement(PLAYER, BarryShortLeft)
@@ -224,6 +234,7 @@ script CanalaveCity_BarrySavesTheDay {
     waitmovement(PLAYER)
     turnobject(PRINPLUP, DIR_WEST)
     delay(24)
+    //Think and surprise Prinplup
     msgbox(format("{COLOR BLUE}Barry: {COLOR DARK_GREY}Hm{PAUSE 4}.{PAUSE 4}.{PAUSE 4}.{PAUSE 4}"), MSGBOX_DEFAULT)
     closemessage
     applymovement(BARRY, ObjectRealizationDownExclamation)
@@ -235,12 +246,16 @@ script CanalaveCity_BarrySavesTheDay {
     waitmessage
     waitbuttonpress
     closemessage
+    //End surprise, start moving to dock
     delay(16)
     applymovement(PLAYER, Common_Movement_WalkDown2)
     applymovement(BARRY, Common_Movement_WalkDown2)
     waitmovement(PLAYER)
+    turnobject(PRINPLUP, DIR_SOUTH)
+    //Prinplup doesn't want to move
+    delay(32)
     applymovement(PRINPLUP, Common_Movement_QuestionMark)
-    delay(16)
+    delay(32)
     turnobject(BARRY, DIR_NORTH)
     msgbox(format("{COLOR BLUE}Barry: {COLOR DARK_GREY}Why that face buddy?"), MSGBOX_DEFAULT)
     closemessage
@@ -255,6 +270,7 @@ script CanalaveCity_BarrySavesTheDay {
     msgbox(format("{COLOR BLUE}Barry: {COLOR DARK_GREY}Gotta go to the docks to get to Iron Island! Come on!"), MSGBOX_DEFAULT)
     closemessage
     delay(4)
+    //Prinplup catches up to Barry, Barry moves to dock
     applymovement(PRINPLUP, PrinplupStartDock)
     waitmovement(PRINPLUP)
     applymovement(PLAYER, Common_Movement_WalkDown4)
@@ -268,7 +284,23 @@ script CanalaveCity_BarrySavesTheDay {
     applymovement(BARRY, Common_Movement_WalkRight2)
     applymovement(PRINPLUP, Common_Movement_WalkRight2)
     waitmovement(PLAYER)
+    //Barry sees Team Galactic
+    applymovement(PLAYER, BarryShortRight)
+    applymovement(BARRY, BarryShortRight)
+    applymovement(PRINPLUP, BarryShortRight)
+    waitmovement(PLAYER)
+    delay(16)
+    message(format("{COLOR BLUE}Barry: {COLOR DARK_GREY}What is Team Galactic doing around here? \pWell, hopefully they aren't up to anything bad."))
+    delay(4)
+    applymovement(BARRY, Common_Movement_QuestionMark)
+    waitmovement(BARRY)
+    waitmessage
+    waitbuttonpress
+    closemessage
+    
+    
     setvar(VAR_CANALAVE_STATE, 4)
+    releaseall
     end
 }
 
