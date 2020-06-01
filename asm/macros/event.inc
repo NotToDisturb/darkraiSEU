@@ -594,7 +594,7 @@
 			map \map
 		.endif
 	.endm
-
+    
 	@ Sets the specified (index) Object's position on the current map.
 	.macro setobjectxy index:req, x:req, y:req
 	.byte 0x57
@@ -1417,9 +1417,11 @@
 	.byte 0xca
 	.endm
 
-	@ Ends the effects of signmsg, returning message box frames to normal.
-	.macro normalmsg
+    @ Changes movement type in real time
+	.macro setobjectnewmovementtype localId:req, movementType:req
 	.byte 0xcb
+    .2byte \localId
+	.byte \movementType
 	.endm
 
 	@ Compares the value of a hidden variable to a dword.

@@ -6,20 +6,51 @@ const GRUNT_2 = 2
 const GRUNT_3 = 3
 const STUNKY = 6
 const WINGULL = 7
+const BARRY = 8
 
 mapscripts CanalaveCity_MapScripts {
     MAP_SCRIPT_ON_WARP_INTO_MAP_TABLE [
         VAR_CANALAVE_STATE, 0 {
             hideobjectat(PLAYER, MAP_CANALAVE_CITY)
+            hideobjectat(BARRY, MAP_CANALAVE_CITY)
+            setvar(VAR_CANALAVE_STATE, 1)
+        }
+        VAR_CANALAVE_STATE, 2 {
+            hideobjectat(PLAYER, MAP_CANALAVE_CITY)
+            hideobjectat(RUPERT, MAP_CANALAVE_CITY)
+            hideobjectat(BEN, MAP_CANALAVE_CITY)
+            hideobjectat(STUNKY, MAP_CANALAVE_CITY)
+            hideobjectat(WINGULL, MAP_CANALAVE_CITY)
+            
+            setobjectxy(PLAYER, 10, 7)
+            
+            removeobject(GRUNT_1, MAP_CANALAVE_CITY)
+            setobjectxyperm(GRUNT_1, 20, 13)
+            addobject(GRUNT_1, MAP_CANALAVE_CITY)
+            setobjectnewmovementtype(GRUNT_1, MOVEMENT_TYPE_WANDER_AROUND)
+            
+            removeobject(GRUNT_2, MAP_CANALAVE_CITY)
+            setobjectxyperm(GRUNT_2, 18, 12)
+            addobject(GRUNT_2, MAP_CANALAVE_CITY)
+            setobjectnewmovementtype(GRUNT_2, MOVEMENT_TYPE_WANDER_LEFT_AND_RIGHT)
+            
+            removeobject(GRUNT_3, MAP_CANALAVE_CITY)
+            setobjectxyperm(GRUNT_3, 17, 15)
+            addobject(GRUNT_3, MAP_CANALAVE_CITY)
+            setobjectnewmovementtype(GRUNT_3, MOVEMENT_TYPE_LOOK_AROUND)
+            
+            setvar(VAR_CANALAVE_STATE, 3)
         }
     ]
     MAP_SCRIPT_ON_FRAME_TABLE [
-        VAR_CANALAVE_STATE, 0: CanalaveCity_BeginStartingCutscene
+        VAR_CANALAVE_STATE, 1: CanalaveCity_BeginStartingCutscene
+        VAR_CANALAVE_STATE, 3: CanalaveCity_BarrySavesTheDay
     ]
 }
 
 script CanalaveCity_BeginStartingCutscene {
-    setvar(VAR_CANALAVE_STATE, 1)
+    msgbox(format("{COLOR BLUE}Rupert: {COLOR DARK_GREY}My poor son{PAUSE 4}.{PAUSE 4}.{PAUSE 4}.{PAUSE 8}\nYou'll get better, {PAUSE 4}I swear."), MSGBOX_DEFAULT)
+    closemessage
     applymovement(PLAYER, WalkOutOfHouseCamera)
     applymovement(RUPERT, WalkOutOfHouseRupert)
     waitmovement(PLAYER)
@@ -35,41 +66,51 @@ script CanalaveCity_BeginStartingCutscene {
     msgbox(format("{COLOR RED}Grunt 1: {COLOR DARK_GREY}Damn right we are! And you can't do anything to stop us."), MSGBOX_DEFAULT)
     applymovement(GRUNT_2, GruntGetAttention)
     waitmovement(GRUNT_2)
-    msgbox(format("{COLOR RED}Grunt 2: {COLOR DARK_GREY}Give us the key to the boat now, old man."), MSGBOX_DEFAULT)
-    msgbox(format("{COLOR BLUE}Ben: {COLOR DARK_GREY}In your dreams! Rupert, get inside and lock the door, now!"), MSGBOX_DEFAULT)
+    msgbox(format("{COLOR RED}Grunt 2: {COLOR DARK_GREY}Give us the key to the boat already, {PAUSE 8}old man."), MSGBOX_DEFAULT)
+    msgbox(format("{COLOR BLUE}Ben: {COLOR DARK_GREY}In your dreams! {PAUSE 8}Rupert, get inside and lock the door, now!"), MSGBOX_DEFAULT)
     applymovement(GRUNT_3, GruntGetAttention)
     waitmovement(GRUNT_3)
-    msgbox(format("{COLOR RED}Grunt 3: {COLOR DARK_GREY}Enough of this. {PAUSE 8}Just take him out."), MSGBOX_DEFAULT)
-    msgbox(format("{COLOR RED}Grunt 1: {COLOR DARK_GREY}Right.{PAUSE 8}.{PAUSE 8}.\nStunky! Use Feint attack!"), MSGBOX_DEFAULT)
-    msgbox(format("{COLOR LIGHT_RED}Stunky: {COLOR DARK_GREY}Stuunk!"), MSGBOX_DEFAULT)
-    applymovement(BEN, Common_Movement_ExclamationMark)
-    msgbox(format("{COLOR BLUE}Ben: {COLOR DARK_GREY}Rupert, go!"), MSGBOX_DEFAULT)
+    msgbox(format("{COLOR RED}Grunt 3: {COLOR DARK_GREY}Enough of this. \n{PAUSE 8}Take him out and let's get the job done."), MSGBOX_DEFAULT)
+    msgbox(format("{COLOR RED}Grunt 1: {COLOR DARK_GREY}Right{PAUSE 4}.{PAUSE 4}.{PAUSE 4}.\pStunky! {PAUSE 4}Use Feint attack!"), MSGBOX_DEFAULT)
+    msgbox(format("{COLOR RED}Stunky: {COLOR DARK_GREY}Stuunk!"), MSGBOX_DEFAULT)
+    applymovement(STUNKY, FeintAttackStart)
+    message(format("{COLOR BLUE}Ben: {COLOR DARK_GREY}Rupert, go!"))
+    waitmovement(STUNKY)
+    applymovement(WINGULL, WingullSurprised)
+    applymovement(STUNKY, FeintAttackEnd)
+    waitmovement(STUNKY)
+    setobjectnewmovementtype(WINGULL, MOVEMENT_TYPE_WALK_IN_PLACE_UP)
+    setobjectnewmovementtype(STUNKY, MOVEMENT_TYPE_WALK_IN_PLACE_DOWN)
+    waitmessage
+    waitbuttonpress
     closemessage
     applymovement(RUPERT, Common_Movement_ExclamationMark)
-    applymovement(STUNKY, FeintAttack)
     applymovement(PLAYER, MoveToRupert)
     waitmovement(PLAYER)
     applymovement(PLAYER, WalkIntoHouse)
     applymovement(RUPERT, WalkIntoHouse)
     waitmovement(PLAYER)
+    setvar(VAR_CANALAVE_STATE, 2)
+    warp(MAP_CANALAVE_CITY, 0, 10, 7)
     end
 }
 
 movement WalkOutOfHouseRupert {
-    walk_down * 2
+    walk_down * 1
     walk_left * 5
     face_up
     delay_16
+    delay_8
     emote_exclamation_mark
-    delay_1
+    delay_8
     walk_fast_up * 2
 }
 
 movement WalkOutOfHouseCamera {
-    walk_down * 2
+    walk_down * 1
     walk_left * 5
     face_up
-    delay_16
+    delay_16 * 2
     walk_fast_up * 3
 }
 
@@ -79,11 +120,19 @@ movement MoveToGrunts {
 
 movement GruntGetAttention {
     jump_in_place_down * 2
+    delay_16
 }
 
-movement FeintAttack {
+movement FeintAttackStart {
     jump_in_place_down * 2
     jump_down
+}
+
+movement WingullSurprised {
+    jump_in_place_up
+}
+
+movement FeintAttackEnd {
     jump_up_backwards
 }
 
@@ -94,5 +143,10 @@ movement MoveToRupert {
 movement WalkIntoHouse {
     walk_down_backwards * 2
     walk_fast_right * 5
-    walk_fast_up * 2
+    walk_fast_up * 1
+}
+
+script CanalaveCity_BarrySavesTheDay {
+    setvar(VAR_CANALAVE_STATE, 4)
+    end
 }
