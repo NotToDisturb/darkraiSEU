@@ -7,12 +7,14 @@ const GRUNT_3 = 3
 const STUNKY = 6
 const WINGULL = 7
 const BARRY = 8
+const PRINPLUP = 9
 
 mapscripts CanalaveCity_MapScripts {
     MAP_SCRIPT_ON_WARP_INTO_MAP_TABLE [
         VAR_CANALAVE_STATE, 0 {
             hideobjectat(PLAYER, MAP_CANALAVE_CITY)
             hideobjectat(BARRY, MAP_CANALAVE_CITY)
+            hideobjectat(PRINPLUP, MAP_CANALAVE_CITY)
             setvar(VAR_CANALAVE_STATE, 1)
         }
         VAR_CANALAVE_STATE, 2 {
@@ -22,22 +24,20 @@ mapscripts CanalaveCity_MapScripts {
             hideobjectat(STUNKY, MAP_CANALAVE_CITY)
             hideobjectat(WINGULL, MAP_CANALAVE_CITY)
             
-            setobjectxy(PLAYER, 10, 7)
-            
             removeobject(GRUNT_1, MAP_CANALAVE_CITY)
-            setobjectxyperm(GRUNT_1, 20, 13)
+            setobjectxyperm(GRUNT_1, 19, 13)
+            setobjectmovementtype(GRUNT_1, MOVEMENT_TYPE_WANDER_UP_AND_DOWN)
             addobject(GRUNT_1, MAP_CANALAVE_CITY)
-            setobjectnewmovementtype(GRUNT_1, MOVEMENT_TYPE_WANDER_AROUND)
             
             removeobject(GRUNT_2, MAP_CANALAVE_CITY)
-            setobjectxyperm(GRUNT_2, 18, 12)
+            setobjectxyperm(GRUNT_2, 18, 11)
+            setobjectmovementtype(GRUNT_2, MOVEMENT_TYPE_LOOK_AROUND)
             addobject(GRUNT_2, MAP_CANALAVE_CITY)
-            setobjectnewmovementtype(GRUNT_2, MOVEMENT_TYPE_WANDER_LEFT_AND_RIGHT)
             
             removeobject(GRUNT_3, MAP_CANALAVE_CITY)
-            setobjectxyperm(GRUNT_3, 17, 15)
+            setobjectxyperm(GRUNT_3, 16, 15)
+            setobjectmovementtype(GRUNT_3, MOVEMENT_TYPE_WANDER_LEFT_AND_RIGHT)
             addobject(GRUNT_3, MAP_CANALAVE_CITY)
-            setobjectnewmovementtype(GRUNT_3, MOVEMENT_TYPE_LOOK_AROUND)
             
             setvar(VAR_CANALAVE_STATE, 3)
         }
@@ -53,27 +53,41 @@ script CanalaveCity_BeginStartingCutscene {
     closemessage
     applymovement(PLAYER, WalkOutOfHouseCamera)
     applymovement(RUPERT, WalkOutOfHouseRupert)
+    waitmovement(RUPERT)
+    applymovement(PLAYER, WalkOutOfHouseCameraEnd)
+    applymovement(RUPERT, WalkOutOfHouseRupertEnd)
     waitmovement(PLAYER)
-    delay(4)
+    delay(16)
     msgbox(format("{COLOR BLUE}Rupert: {COLOR DARK_GREY}Ben! {PAUSE 4}What's going on!"), MSGBOX_DEFAULT)
     closemessage
     applymovement(PLAYER, MoveToGrunts)
     waitmovement(PLAYER)
     applymovement(BEN, Common_Movement_ExclamationMark)
+    delay(16)
     msgbox(format("{COLOR BLUE}Ben: {COLOR DARK_GREY}Get back inside Rupert!\nThey're trying to take the dock!"), MSGBOX_DEFAULT)
-    applymovement(GRUNT_1, GruntGetAttention)
+    closemessage
+    applymovement(GRUNT_1, ObjectGetAttentionDown)
     waitmovement(GRUNT_1)
+    delay(4)
     msgbox(format("{COLOR RED}Grunt 1: {COLOR DARK_GREY}Damn right we are! And you can't do anything to stop us."), MSGBOX_DEFAULT)
-    applymovement(GRUNT_2, GruntGetAttention)
+    closemessage
+    applymovement(GRUNT_2, ObjectGetAttentionDown)
     waitmovement(GRUNT_2)
+    delay(4)
     msgbox(format("{COLOR RED}Grunt 2: {COLOR DARK_GREY}Give us the key to the boat already, {PAUSE 8}old man."), MSGBOX_DEFAULT)
+    delay(16)
     msgbox(format("{COLOR BLUE}Ben: {COLOR DARK_GREY}In your dreams! {PAUSE 8}Rupert, get inside and lock the door, now!"), MSGBOX_DEFAULT)
-    applymovement(GRUNT_3, GruntGetAttention)
+    closemessage
+    applymovement(GRUNT_3, ObjectGetAttentionDown)
     waitmovement(GRUNT_3)
-    msgbox(format("{COLOR RED}Grunt 3: {COLOR DARK_GREY}Enough of this. \n{PAUSE 8}Take him out and let's get the job done."), MSGBOX_DEFAULT)
+    delay(4)
+    msgbox(format("{COLOR RED}Grunt 3: {COLOR DARK_GREY}Enough of this! \n{PAUSE 8}Take him out and let's get the job done."), MSGBOX_DEFAULT)
+    delay(16)
     msgbox(format("{COLOR RED}Grunt 1: {COLOR DARK_GREY}Right{PAUSE 4}.{PAUSE 4}.{PAUSE 4}.\pStunky! {PAUSE 4}Use Feint attack!"), MSGBOX_DEFAULT)
+    delay(16)
     msgbox(format("{COLOR RED}Stunky: {COLOR DARK_GREY}Stuunk!"), MSGBOX_DEFAULT)
     applymovement(STUNKY, FeintAttackStart)
+    delay(16)
     message(format("{COLOR BLUE}Ben: {COLOR DARK_GREY}Rupert, go!"))
     waitmovement(STUNKY)
     applymovement(WINGULL, WingullSurprised)
@@ -91,7 +105,7 @@ script CanalaveCity_BeginStartingCutscene {
     applymovement(RUPERT, WalkIntoHouse)
     waitmovement(PLAYER)
     setvar(VAR_CANALAVE_STATE, 2)
-    warp(MAP_CANALAVE_CITY, 0, 10, 7)
+    warp(MAP_CANALAVE_CITY, 0, 10, 5)
     end
 }
 
@@ -103,6 +117,9 @@ movement WalkOutOfHouseRupert {
     delay_8
     emote_exclamation_mark
     delay_8
+}
+
+movement WalkOutOfHouseRupertEnd {
     walk_fast_up * 2
 }
 
@@ -110,7 +127,10 @@ movement WalkOutOfHouseCamera {
     walk_down * 1
     walk_left * 5
     face_up
-    delay_16 * 2
+    
+}
+
+movement WalkOutOfHouseCameraEnd {
     walk_fast_up * 3
 }
 
@@ -118,8 +138,13 @@ movement MoveToGrunts {
     walk_fast_up * 4
 }
 
-movement GruntGetAttention {
+movement ObjectGetAttentionDown {
     jump_in_place_down * 2
+    delay_16
+}
+
+movement ObjectGetAttentionLeft {
+    jump_in_place_left * 2
     delay_16
 }
 
@@ -146,7 +171,146 @@ movement WalkIntoHouse {
     walk_fast_up * 1
 }
 
+
 script CanalaveCity_BarrySavesTheDay {
+    applymovement(PLAYER, BarryWalkFromGym)
+    applymovement(BARRY, BarryWalkFromGym)
+    applymovement(PRINPLUP, BarryWalkFromGym)
+    delay(16)
+    message(format("{COLOR BLUE}Barry: {COLOR DARK_GREY}Oh man, Byron is so strong{PAUSE 4}.{PAUSE 4}.{PAUSE 4}.{PAUSE 4}\nHe beat us without breaking a sweat!"))
+    waitmovement(PLAYER)
+    applymovement(PRINPLUP, PrinplupFaceBarry)
+    waitmessage
+    waitbuttonpress
+    closemessage
+    applymovement(PLAYER, BarryShortLeft)
+    applymovement(BARRY, BarryShortLeft)
+    delay(16)
+    msgbox(format("{COLOR BLUE}Barry: {COLOR DARK_GREY}We sure can't can beat him yet, {PAUSE 8}\nI'm still a long way from his level."), MSGBOX_DEFAULT)
+    applymovement(BARRY, ObjectRealizationDown)
+    delay(16)
+    msgbox(format("But I'm not giving up! {PAUSE 4}No sir!\n {PAUSE 8}We're gonna train together!\p That's right! Even harder than before! {PAUSE 8}Hear that Prinplup?"), MSGBOX_DEFAULT)
+    closemessage
+    delay(4)
+    message(format("{COLOR BLUE}Prinplup: {COLOR DARK_GREY}Prinp! Prinp!"))
+    waitmovement(PLAYER)
+    applymovement(PRINPLUP, ObjectGetAttentionLeft)
+    waitmessage
+    waitbuttonpress
+    closemessage
+    delay(16)
+    message(format("{COLOR BLUE}Barry: {COLOR DARK_GREY}We still need to find where to train though. {PAUSE 8}What do you think?"))
+    applymovement(PLAYER, BarryShortRight)
+    applymovement(BARRY, BarryShortRight)
+    waitmovement(PLAYER)
+    applymovement(PLAYER, BarryShortRight)
+    applymovement(BARRY, BarryShortRight)
+    turnobject(PRINPLUP, DIR_NORTH)
+    waitmovement(PLAYER)
+    turnobject(BARRY, DIR_SOUTH)
+    waitmessage
+    waitbuttonpress
+    closemessage
+    delay(16)
+    message(format("{COLOR BLUE}Prinplup: {COLOR DARK_GREY}{PAUSE 8}.{PAUSE 32}.{PAUSE 32}.{PAUSE 32}"))
+    waitmessage
+    waitbuttonpress
+    closemessage
+    delay(32)
+    msgbox(format("{COLOR BLUE}Barry: {COLOR DARK_GREY}Right. {PAUSE 32}\nI keep forgetting you can't speak."), MSGBOX_DEFAULT)
+    closemessage
+    applymovement(PLAYER, BarryShortLeft)
+    applymovement(BARRY, BarryShortLeft)
+    waitmovement(PLAYER)
+    turnobject(PRINPLUP, DIR_WEST)
+    delay(24)
+    msgbox(format("{COLOR BLUE}Barry: {COLOR DARK_GREY}Hm{PAUSE 4}.{PAUSE 4}.{PAUSE 4}.{PAUSE 4}"), MSGBOX_DEFAULT)
+    closemessage
+    applymovement(BARRY, ObjectRealizationDownExclamation)
+    delay(16)
+    message(format("{COLOR BLUE}Barry: {COLOR DARK_GREY}Oh, {PAUSE 2}I know just the place! \pCome on Prinplup, we're going to Iron Island!"))
+    delay(4)
+    applymovement(PRINPLUP, ObjectRealizationLeftExclamation)
+    waitmovement(PRINPLUP)
+    waitmessage
+    waitbuttonpress
+    closemessage
+    delay(16)
+    applymovement(PLAYER, Common_Movement_WalkDown2)
+    applymovement(BARRY, Common_Movement_WalkDown2)
+    waitmovement(PLAYER)
+    applymovement(PRINPLUP, Common_Movement_QuestionMark)
+    delay(16)
+    turnobject(BARRY, DIR_NORTH)
+    msgbox(format("{COLOR BLUE}Barry: {COLOR DARK_GREY}Why that face buddy?"), MSGBOX_DEFAULT)
+    closemessage
+    delay(4)
+    applymovement(PRINPLUP, ObjectRealizationDown)
+    waitmovement(PRINPLUP)
+    msgbox(format("{COLOR BLUE}Barry: {COLOR DARK_GREY}You still can't talk you know{PAUSE 4}.{PAUSE 4}.{PAUSE 4}.{PAUSE 4}"), MSGBOX_DEFAULT)
+    closemessage
+    delay(4)
+    applymovement(PRINPLUP, ObjectGetAttentionDown)
+    waitmovement(PRINPLUP)
+    msgbox(format("{COLOR BLUE}Barry: {COLOR DARK_GREY}Gotta go to the docks to get to Iron Island! Come on!"), MSGBOX_DEFAULT)
+    closemessage
+    delay(4)
+    applymovement(PRINPLUP, PrinplupStartDock)
+    waitmovement(PRINPLUP)
+    applymovement(PLAYER, Common_Movement_WalkDown4)
+    applymovement(BARRY, Common_Movement_WalkDown4)
+    applymovement(PRINPLUP, PrinplupTurnDock)
+    waitmovement(PLAYER)
+    applymovement(PLAYER, Common_Movement_WalkRight)
+    applymovement(BARRY, Common_Movement_WalkRight)
+    waitmovement(PLAYER)
+    applymovement(PLAYER, Common_Movement_WalkRight2)
+    applymovement(BARRY, Common_Movement_WalkRight2)
+    applymovement(PRINPLUP, Common_Movement_WalkRight2)
+    waitmovement(PLAYER)
     setvar(VAR_CANALAVE_STATE, 4)
     end
+}
+
+movement BarryWalkFromGym {
+    walk_slow_down * 2
+}
+
+movement PrinplupFaceBarry {
+    walk_down
+    face_left
+}
+
+movement BarryShortLeft {
+    walk_slow_left
+}
+
+movement BarryShortRight {
+    walk_slow_right
+}
+
+movement ObjectRealizationDown{
+    jump_in_place_down
+}
+
+movement ObjectRealizationDownExclamation{
+    jump_in_place_down
+    emote_exclamation_mark
+}
+
+movement ObjectRealizationLeftExclamation{
+    jump_in_place_left
+    emote_exclamation_mark
+}
+
+movement PrinplupStartDock {
+    jump_in_place_down * 2
+    delay_16
+    walk_down
+}
+
+movement PrinplupTurnDock {
+    walk_down * 2
+    walk_slow_down
+    face_right
 }

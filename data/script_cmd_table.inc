@@ -201,7 +201,7 @@ gScriptCmdTable:: @ 81DB67C
 	.4byte ScrCmd_bufferboxname
 	.4byte ScrCmd_nop1
 	.4byte ScrCmd_nop1
-	.4byte ScrCmd_nop1
+	.4byte ScrCmd_getobjectxy
 	.4byte ScrCmd_nop1
 	.4byte ScrCmd_setobjectnewmovementtype
 	.4byte ScrCmd_nop1

@@ -2313,3 +2313,16 @@ bool8 ScrCmd_setobjectnewmovementtype(struct ScriptContext *ctx)
     SetTrainerMovementType(objectEvent, movementType);
     ScriptMovement_UnfreezeObjectEvents();
 }
+
+bool8 ScrCmd_getobjectxy(struct ScriptContext *ctx)
+{
+    u16 localId = VarGet(ScriptReadHalfword(ctx));
+    u16 *pX = GetVarPointer(ScriptReadHalfword(ctx));
+    u16 *pY = GetVarPointer(ScriptReadHalfword(ctx));
+    
+    struct ObjectEvent *objectEvent = &gObjectEvents[GetObjectEventIdByLocalId(localId)];
+    
+    *pX = objectEvent->currentCoords.x;
+    *pY = objectEvent->currentCoords.y;
+    return FALSE;
+}
