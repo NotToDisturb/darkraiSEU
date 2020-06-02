@@ -105,7 +105,7 @@ script CanalaveCity_BeginStartingCutscene {
     applymovement(RUPERT, WalkIntoHouse)
     waitmovement(PLAYER)
     setvar(VAR_CANALAVE_STATE, 2)
-    warp(MAP_CANALAVE_CITY, 0, 10, 5)
+    warp(MAP_THE_VOID, 0, 10, 5)
     end
 }
 
@@ -197,7 +197,7 @@ script CanalaveCity_BarrySavesTheDay {
     delay(16)
     msgbox(format("But I'm not giving up! {PAUSE 4}No sir!\n {PAUSE 8}We're gonna train together!\p That's right! Even harder than before! {PAUSE 8}Hear that Prinplup?"), MSGBOX_DEFAULT)
     closemessage
-    delay(4)
+    delay(16)
     //Prinplup jumps while it says it's cry
     message(format("{COLOR BLUE}Prinplup: {COLOR DARK_GREY}Prinp! Prinp!"))
     applymovement(PRINPLUP, ObjectGetAttentionLeft)
@@ -229,6 +229,7 @@ script CanalaveCity_BarrySavesTheDay {
     //Prinplup doesn't speak, Barry moves away
     msgbox(format("{COLOR BLUE}Barry: {COLOR DARK_GREY}Right. {PAUSE 32}\nI keep forgetting you can't speak."), MSGBOX_DEFAULT)
     closemessage
+    delay(16)
     applymovement(PLAYER, BarryShortLeft)
     applymovement(BARRY, BarryShortLeft)
     waitmovement(PLAYER)
@@ -253,23 +254,25 @@ script CanalaveCity_BarrySavesTheDay {
     waitmovement(PLAYER)
     turnobject(PRINPLUP, DIR_SOUTH)
     //Prinplup doesn't want to move
-    delay(32)
+    delay(8)
     applymovement(PRINPLUP, Common_Movement_QuestionMark)
     delay(32)
     turnobject(BARRY, DIR_NORTH)
     msgbox(format("{COLOR BLUE}Barry: {COLOR DARK_GREY}Why that face buddy?"), MSGBOX_DEFAULT)
     closemessage
-    delay(4)
+    delay(16)
     applymovement(PRINPLUP, ObjectRealizationDown)
     waitmovement(PRINPLUP)
+    delay(16)
     msgbox(format("{COLOR BLUE}Barry: {COLOR DARK_GREY}You still can't talk you know{PAUSE 4}.{PAUSE 4}.{PAUSE 4}.{PAUSE 4}"), MSGBOX_DEFAULT)
     closemessage
-    delay(4)
+    delay(16)
     applymovement(PRINPLUP, ObjectGetAttentionDown)
     waitmovement(PRINPLUP)
+    delay(16)
     msgbox(format("{COLOR BLUE}Barry: {COLOR DARK_GREY}Gotta go to the docks to get to Iron Island! Come on!"), MSGBOX_DEFAULT)
     closemessage
-    delay(4)
+    delay(16)
     //Prinplup catches up to Barry, Barry moves to dock
     applymovement(PRINPLUP, PrinplupStartDock)
     waitmovement(PRINPLUP)
@@ -291,14 +294,14 @@ script CanalaveCity_BarrySavesTheDay {
     waitmovement(PLAYER)
     delay(16)
     message(format("{COLOR BLUE}Barry: {COLOR DARK_GREY}What is Team Galactic doing around here? \pWell, hopefully they aren't up to anything bad."))
-    delay(4)
+    delay(16)
+    waitmovement(BARRY)
     applymovement(BARRY, Common_Movement_QuestionMark)
     waitmovement(BARRY)
+    delay(16)
     waitmessage
     waitbuttonpress
     closemessage
-    
-    
     setvar(VAR_CANALAVE_STATE, 4)
     releaseall
     end

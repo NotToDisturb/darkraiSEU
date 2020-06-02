@@ -99,7 +99,7 @@ CanalaveCity_BeginStartingCutscene::
 	applymovement 1, WalkIntoHouse
 	waitmovement OBJ_EVENT_ID_PLAYER
 	setvar VAR_CANALAVE_STATE, 2
-	warp MAP_CANALAVE_CITY, 0, 10, 5
+	warp MAP_THE_VOID, 0, 10, 5
 	end
 
 
@@ -211,7 +211,7 @@ CanalaveCity_BarrySavesTheDay::
 	delay 16
 	msgbox CanalaveCity_BarrySavesTheDay_Text_2, MSGBOX_DEFAULT
 	closemessage
-	delay 4
+	delay 16
 	message CanalaveCity_BarrySavesTheDay_Text_3
 	applymovement 9, ObjectGetAttentionLeft
 	waitmovement 9
@@ -239,6 +239,7 @@ CanalaveCity_BarrySavesTheDay::
 	delay 32
 	msgbox CanalaveCity_BarrySavesTheDay_Text_6, MSGBOX_DEFAULT
 	closemessage
+	delay 16
 	applymovement OBJ_EVENT_ID_PLAYER, BarryShortLeft
 	applymovement 8, BarryShortLeft
 	waitmovement OBJ_EVENT_ID_PLAYER
@@ -260,23 +261,25 @@ CanalaveCity_BarrySavesTheDay::
 	applymovement 8, Common_Movement_WalkDown2
 	waitmovement OBJ_EVENT_ID_PLAYER
 	turnobject 9, DIR_SOUTH
-	delay 32
+	delay 8
 	applymovement 9, Common_Movement_QuestionMark
 	delay 32
 	turnobject 8, DIR_NORTH
 	msgbox CanalaveCity_BarrySavesTheDay_Text_9, MSGBOX_DEFAULT
 	closemessage
-	delay 4
+	delay 16
 	applymovement 9, ObjectRealizationDown
 	waitmovement 9
+	delay 16
 	msgbox CanalaveCity_BarrySavesTheDay_Text_10, MSGBOX_DEFAULT
 	closemessage
-	delay 4
+	delay 16
 	applymovement 9, ObjectGetAttentionDown
 	waitmovement 9
+	delay 16
 	msgbox CanalaveCity_BarrySavesTheDay_Text_11, MSGBOX_DEFAULT
 	closemessage
-	delay 4
+	delay 16
 	applymovement 9, PrinplupStartDock
 	waitmovement 9
 	applymovement OBJ_EVENT_ID_PLAYER, Common_Movement_WalkDown4
@@ -296,9 +299,11 @@ CanalaveCity_BarrySavesTheDay::
 	waitmovement OBJ_EVENT_ID_PLAYER
 	delay 16
 	message CanalaveCity_BarrySavesTheDay_Text_12
-	delay 4
+	delay 16
+	waitmovement 8
 	applymovement 8, Common_Movement_QuestionMark
 	waitmovement 8
+	delay 16
 	waitmessage
 	waitbuttonpress
 	closemessage

@@ -4,7 +4,7 @@ LittlerootTown_MapScripts:: @ 81E7DCB
 	map_script MAP_SCRIPT_ON_WARP_INTO_MAP_TABLE, LittlerootTown_OnWarp
 	.byte 0
 
-	@ State descriptions for VAR_LITTLEROOT_TOWN_STATE
+	@ State descriptions for VAR_THE_VOID_STATE
 	@ 1: Met Rival
 	@ 2: Saving Birch
 	@ 3: Received Pokedex
@@ -40,7 +40,7 @@ LittlerootTown_OnTransition: @ 81E7DDB
 	compare VAR_LITTLEROOT_INTRO_STATE, 2
 	call_if_eq LittlerootTown_EventScript_MoveMomToMaysDoor
 	call_if_unset FLAG_RESCUED_BIRCH, LittlerootTown_EventScript_SetTwinPos
-	compare VAR_LITTLEROOT_TOWN_STATE, 3
+	compare VAR_THE_VOID_STATE, 3
 	call_if_eq LittlerootTown_EventScript_SetMomStandingInFrontOfDoorPos
 	compare VAR_LITTLEROOT_HOUSES_STATE_MAY, 4
 	call_if_eq LittlerootTown_EventScript_SetExitedHouseAfterLatiSSTicketEvent
@@ -83,7 +83,7 @@ LittlerootTown_EventScript_MoveMomToMaysDoor:: @ 81E7E67
 	return
 
 LittlerootTown_EventScript_SetTwinPos:: @ 81E7E6F
-	compare VAR_LITTLEROOT_TOWN_STATE, 0
+	compare VAR_THE_VOID_STATE, 0
 	goto_if_eq LittlerootTown_EventScript_SetTwinGuardingRoutePos
 	setobjectxyperm 1, 10, 1
 	setobjectmovementtype 1, MOVEMENT_TYPE_FACE_UP
@@ -266,7 +266,7 @@ LittlerootTown_EventScript_Twin:: @ 81E8034
 	faceplayer
 	goto_if_set FLAG_ADVENTURE_STARTED, LittlerootTown_EventScript_GoodLuck
 	goto_if_set FLAG_RESCUED_BIRCH, LittlerootTown_EventScript_YouSavedBirch
-	compare VAR_LITTLEROOT_TOWN_STATE, 0
+	compare VAR_THE_VOID_STATE, 0
 	goto_if_ne LittlerootTown_EventScript_GoSaveBirch
 	msgbox LittlerootTown_Text_IfYouGoInGrassPokemonWillJumpOut, MSGBOX_DEFAULT
 	release
@@ -278,7 +278,7 @@ LittlerootTown_EventScript_GoSaveBirch:: @ 81E805D
 	closemessage
 	applymovement 1, Common_Movement_FaceOriginalDirection
 	waitmovement 0
-	setvar VAR_LITTLEROOT_TOWN_STATE, 2
+	setvar VAR_THE_VOID_STATE, 2
 	release
 	end
 
@@ -396,7 +396,7 @@ LittlerootTown_EventScript_GoSaveBirchTrigger:: @ 81E811F
 	closemessage
 	applymovement 1, Common_Movement_FaceOriginalDirection
 	waitmovement 0
-	setvar VAR_LITTLEROOT_TOWN_STATE, 2
+	setvar VAR_THE_VOID_STATE, 2
 	releaseall
 	end
 
@@ -939,7 +939,7 @@ LittlerootTown_EventScript_Mom:: @ 81E863D
 LittlerootTown_EventScript_SetReceivedRunningShoes:: @ 81E8686
 	removeobject 4
 	setflag FLAG_SYS_B_DASH
-	setvar VAR_LITTLEROOT_TOWN_STATE, 4
+	setvar VAR_THE_VOID_STATE, 4
 	release
 	end
 

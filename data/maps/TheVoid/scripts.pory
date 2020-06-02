@@ -1,0 +1,21 @@
+const PLAYER = OBJ_EVENT_ID_PLAYER
+const DARKRAI = 1
+
+mapscripts TheVoid_MapScripts {
+    MAP_SCRIPT_ON_WARP_INTO_MAP_TABLE [
+        VAR_THE_VOID_STATE, 0 {
+            setvar(VAR_THE_VOID_STATE, 1)
+        }
+    ]
+    MAP_SCRIPT_ON_FRAME_TABLE [
+        VAR_THE_VOID_STATE, 1: TheVoid_FirstAppear
+    ]
+}
+
+script TheVoid_FirstAppear {
+    msgbox(format("{COLOR BLUE}Prinplup: {COLOR DARK_GREY}{PAUSE 8}.{PAUSE 32}.{PAUSE 32}.{PAUSE 32}"))
+    closemessage
+    setvar(VAR_THE_VOID_STATE, 2)
+    warp(MAP_CANALAVE_CITY, 0, 15, 12)
+    end
+}

@@ -4420,6 +4420,16 @@
       "secondary_tileset": "gTileset_Canalave",
       "border_filepath": "data/layouts/CanalaveCity/border.bin",
       "blockdata_filepath": "data/layouts/CanalaveCity/map.bin"
+    },
+    {
+      "id": "LAYOUT_THE_VOID",
+      "name": "TheVoid_Layout",
+      "width": 30,
+      "height": 25,
+      "primary_tileset": "gTileset_Outside",
+      "secondary_tileset": "gTileset_Petalburg",
+      "border_filepath": "data/layouts/TheVoid/border.bin",
+      "blockdata_filepath": "data/layouts/TheVoid/map.bin"
     }
   ]
 }
