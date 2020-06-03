@@ -246,8 +246,10 @@
 #define OBJ_EVENT_GFX_RUPERT_SON                 241
 #define OBJ_EVENT_GFX_BEN                        242
 #define OBJ_EVENT_GFX_BARRY                      243
+#define OBJ_EVENT_GFX_PRINPLUP                   244
+#define OBJ_EVENT_GFX_DARKRAI                    245
 
-#define NUM_OBJ_EVENT_GFX                        244
+#define NUM_OBJ_EVENT_GFX                        246
 
 
 // These are dynamic object gfx ids.

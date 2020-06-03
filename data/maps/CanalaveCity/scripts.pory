@@ -26,17 +26,17 @@ mapscripts CanalaveCity_MapScripts {
             
             removeobject(GRUNT_1, MAP_CANALAVE_CITY)
             setobjectxyperm(GRUNT_1, 19, 13)
-            setobjectmovementtype(GRUNT_1, MOVEMENT_TYPE_FACE_LEFT)
+            //setobjectmovementtype(GRUNT_1, MOVEMENT_TYPE_FACE_LEFT)
             addobject(GRUNT_1, MAP_CANALAVE_CITY)
             
             removeobject(GRUNT_2, MAP_CANALAVE_CITY)
             setobjectxyperm(GRUNT_2, 18, 11)
-            setobjectmovementtype(GRUNT_2, MOVEMENT_TYPE_LOOK_AROUND)
+            //setobjectmovementtype(GRUNT_2, MOVEMENT_TYPE_LOOK_AROUND)
             addobject(GRUNT_2, MAP_CANALAVE_CITY)
             
             removeobject(GRUNT_3, MAP_CANALAVE_CITY)
             setobjectxyperm(GRUNT_3, 16, 15)
-            setobjectmovementtype(GRUNT_3, MOVEMENT_TYPE_WANDER_LEFT_AND_RIGHT)
+            //setobjectmovementtype(GRUNT_3, MOVEMENT_TYPE_WANDER_LEFT_AND_RIGHT)
             addobject(GRUNT_3, MAP_CANALAVE_CITY)
             
             setvar(VAR_CANALAVE_STATE, 3)
@@ -105,7 +105,7 @@ script CanalaveCity_BeginStartingCutscene {
     applymovement(RUPERT, WalkIntoHouse)
     waitmovement(PLAYER)
     setvar(VAR_CANALAVE_STATE, 2)
-    warp(MAP_THE_VOID, 0, 10, 5)
+    warp(MAP_THE_VOID, 0, 15, 12)
     end
 }
 
@@ -294,14 +294,16 @@ script CanalaveCity_BarrySavesTheDay {
     waitmovement(PLAYER)
     delay(16)
     message(format("{COLOR BLUE}Barry: {COLOR DARK_GREY}What is Team Galactic doing around here? \pWell, hopefully they aren't up to anything bad."))
-    delay(16)
-    waitmovement(BARRY)
+    delay(8)
     applymovement(BARRY, Common_Movement_QuestionMark)
-    waitmovement(BARRY)
-    delay(16)
+    delay(32)
     waitmessage
     waitbuttonpress
     closemessage
+    applymovement(PLAYER, Common_Movement_WalkRight2)
+    applymovement(BARRY, Common_Movement_WalkRight2)
+    applymovement(PRINPLUP, Common_Movement_WalkRight2)
+    waitmovement(PLAYER)
     setvar(VAR_CANALAVE_STATE, 4)
     releaseall
     end

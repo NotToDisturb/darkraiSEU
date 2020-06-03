@@ -16,6 +16,6 @@ script TheVoid_FirstAppear {
     msgbox(format("{COLOR BLUE}Prinplup: {COLOR DARK_GREY}{PAUSE 8}.{PAUSE 32}.{PAUSE 32}.{PAUSE 32}"))
     closemessage
     setvar(VAR_THE_VOID_STATE, 2)
-    warp(MAP_CANALAVE_CITY, 0, 15, 12)
+    warp(MAP_CANALAVE_CITY, 0, 10, 5)
     end
 }

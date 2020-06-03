@@ -12,7 +12,7 @@ TheVoid_MapScripts_MAP_SCRIPT_ON_WARP_INTO_MAP_TABLE_0:
 	return
 
 TheVoid_MapScripts_MAP_SCRIPT_ON_FRAME_TABLE:
-	map_script_2 VAR_THE_VOID_STATE, 1, CanalaveCity_BeginStartingCutscene
+	map_script_2 VAR_THE_VOID_STATE, 1, TheVoid_FirstAppear
 	.2byte 0
 
 

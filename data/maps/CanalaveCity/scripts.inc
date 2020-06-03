@@ -23,15 +23,12 @@ CanalaveCity_MapScripts_MAP_SCRIPT_ON_WARP_INTO_MAP_TABLE_1:
 	hideobjectat 7, MAP_CANALAVE_CITY
 	removeobject 5, MAP_CANALAVE_CITY
 	setobjectxyperm 5, 19, 13
-	setobjectmovementtype 5, MOVEMENT_TYPE_FACE_LEFT
 	addobject 5, MAP_CANALAVE_CITY
 	removeobject 2, MAP_CANALAVE_CITY
 	setobjectxyperm 2, 18, 11
-	setobjectmovementtype 2, MOVEMENT_TYPE_LOOK_AROUND
 	addobject 2, MAP_CANALAVE_CITY
 	removeobject 3, MAP_CANALAVE_CITY
 	setobjectxyperm 3, 16, 15
-	setobjectmovementtype 3, MOVEMENT_TYPE_WANDER_LEFT_AND_RIGHT
 	addobject 3, MAP_CANALAVE_CITY
 	setvar VAR_CANALAVE_STATE, 3
 	return
@@ -99,7 +96,7 @@ CanalaveCity_BeginStartingCutscene::
 	applymovement 1, WalkIntoHouse
 	waitmovement OBJ_EVENT_ID_PLAYER
 	setvar VAR_CANALAVE_STATE, 2
-	warp MAP_THE_VOID, 0, 10, 5
+	warp MAP_THE_VOID, 0, 15, 12
 	end
 
 
@@ -299,14 +296,16 @@ CanalaveCity_BarrySavesTheDay::
 	waitmovement OBJ_EVENT_ID_PLAYER
 	delay 16
 	message CanalaveCity_BarrySavesTheDay_Text_12
-	delay 16
-	waitmovement 8
+	delay 8
 	applymovement 8, Common_Movement_QuestionMark
-	waitmovement 8
-	delay 16
+	delay 32
 	waitmessage
 	waitbuttonpress
 	closemessage
+	applymovement OBJ_EVENT_ID_PLAYER, Common_Movement_WalkRight2
+	applymovement 8, Common_Movement_WalkRight2
+	applymovement 9, Common_Movement_WalkRight2
+	waitmovement OBJ_EVENT_ID_PLAYER
 	setvar VAR_CANALAVE_STATE, 4
 	releaseall
 	end
