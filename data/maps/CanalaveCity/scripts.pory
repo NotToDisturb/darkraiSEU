@@ -11,8 +11,9 @@ const PRINPLUP = 9
 
 mapscripts CanalaveCity_MapScripts {
     MAP_SCRIPT_ON_WARP_INTO_MAP_TABLE [
-        VAR_CANALAVE_STATE, 1 {
+        VAR_CANALAVE_STATE, 0 {
             hideobjectat(PLAYER, MAP_CANALAVE_CITY)
+            hideobjectat(RUPERT, MAP_CANALAVE_CITY)
             hideobjectat(BARRY, MAP_CANALAVE_CITY)
             hideobjectat(PRINPLUP, MAP_CANALAVE_CITY)
             setvar(VAR_CANALAVE_STATE, 1)
@@ -49,6 +50,12 @@ mapscripts CanalaveCity_MapScripts {
 }
 
 script CanalaveCity_BeginStartingCutscene {
+    opendoor(15, 10)
+    waitdooranim
+    showobjectat(RUPERT, MAP_CANALAVE_CITY)
+    applymovement(RUPERT, Common_Movement_WalkDown)
+    waitmovement(RUPERT)
+    closedoor(15, 10)
     msgbox(format("{COLOR BLUE}Rupert: {COLOR DARK_GREY}My poor son{PAUSE 4}.{PAUSE 4}.{PAUSE 4}.{PAUSE 8}\nYou'll get better, {PAUSE 4}I swear."), MSGBOX_DEFAULT)
     closemessage
     applymovement(PLAYER, WalkOutOfHouseCamera)
@@ -110,7 +117,7 @@ script CanalaveCity_BeginStartingCutscene {
 }
 
 movement WalkOutOfHouseRupert {
-    walk_down * 1
+    walk_down
     walk_left * 5
     face_up
     delay_16
@@ -124,7 +131,7 @@ movement WalkOutOfHouseRupertEnd {
 }
 
 movement WalkOutOfHouseCamera {
-    walk_down * 1
+    walk_down
     walk_left * 5
     face_up
     

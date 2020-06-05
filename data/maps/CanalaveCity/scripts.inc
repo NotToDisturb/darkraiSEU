@@ -4,12 +4,13 @@ CanalaveCity_MapScripts::
 	.byte 0
 
 CanalaveCity_MapScripts_MAP_SCRIPT_ON_WARP_INTO_MAP_TABLE:
-	map_script_2 VAR_CANALAVE_STATE, 1, CanalaveCity_MapScripts_MAP_SCRIPT_ON_WARP_INTO_MAP_TABLE_0
+	map_script_2 VAR_CANALAVE_STATE, 0, CanalaveCity_MapScripts_MAP_SCRIPT_ON_WARP_INTO_MAP_TABLE_0
 	map_script_2 VAR_CANALAVE_STATE, 2, CanalaveCity_MapScripts_MAP_SCRIPT_ON_WARP_INTO_MAP_TABLE_1
 	.2byte 0
 
 CanalaveCity_MapScripts_MAP_SCRIPT_ON_WARP_INTO_MAP_TABLE_0:
 	hideobjectat OBJ_EVENT_ID_PLAYER, MAP_CANALAVE_CITY
+	hideobjectat 1, MAP_CANALAVE_CITY
 	hideobjectat 8, MAP_CANALAVE_CITY
 	hideobjectat 9, MAP_CANALAVE_CITY
 	setvar VAR_CANALAVE_STATE, 1
@@ -40,6 +41,12 @@ CanalaveCity_MapScripts_MAP_SCRIPT_ON_FRAME_TABLE:
 
 
 CanalaveCity_BeginStartingCutscene::
+	opendoor 15, 10
+	waitdooranim
+	showobjectat 1, MAP_CANALAVE_CITY
+	applymovement 1, Common_Movement_WalkDown
+	waitmovement 1
+	closedoor 15, 10
 	msgbox CanalaveCity_BeginStartingCutscene_Text_0, MSGBOX_DEFAULT
 	closemessage
 	applymovement OBJ_EVENT_ID_PLAYER, WalkOutOfHouseCamera
