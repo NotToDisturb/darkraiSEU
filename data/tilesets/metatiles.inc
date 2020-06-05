@@ -572,3 +572,10 @@ gMetatiles_Canalave::
 	.align 1
 gMetatileAttributes_Canalave::
 	.incbin "data/tilesets/secondary/canalave/metatile_attributes.bin"
+	.align 1
+gMetatiles_Interior::
+	.incbin "data/tilesets/primary/interior/metatiles.bin"
+
+	.align 1
+gMetatileAttributes_Interior::
+	.incbin "data/tilesets/primary/interior/metatile_attributes.bin"

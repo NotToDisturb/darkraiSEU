@@ -840,7 +840,7 @@ gTileset_Outside::
 	.4byte gTilesetPalettes_Outside
 	.4byte gMetatiles_Outside
 	.4byte gMetatileAttributes_Outside
-	.4byte NULL
+	.4byte InitTilesetAnim_Outside
 
 	.align 2
 gTileset_Canalave::
@@ -851,4 +851,15 @@ gTileset_Canalave::
 	.4byte gTilesetPalettes_Canalave
 	.4byte gMetatiles_Canalave
 	.4byte gMetatileAttributes_Canalave
+	.4byte InitTilesetAnim_Canalave
+
+	.align 2
+gTileset_Interior::
+	.byte TRUE @ is compressed
+	.byte FALSE @ is secondary
+	.2byte 0
+	.4byte gTilesetTiles_Interior
+	.4byte gTilesetPalettes_Interior
+	.4byte gMetatiles_Interior
+	.4byte gMetatileAttributes_Interior
 	.4byte NULL

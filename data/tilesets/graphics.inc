@@ -1769,3 +1769,23 @@ gTilesetPalettes_Canalave::
 	.align 2
 gTilesetTiles_Canalave::
 	.incbin "data/tilesets/secondary/canalave/tiles.4bpp.lz"
+
+	.align 2
+gTilesetPalettes_Interior::
+	.incbin "data/tilesets/primary/interior/palettes/00.gbapal"
+	.incbin "data/tilesets/primary/interior/palettes/01.gbapal"
+	.incbin "data/tilesets/primary/interior/palettes/02.gbapal"
+	.incbin "data/tilesets/primary/interior/palettes/03.gbapal"
+	.incbin "data/tilesets/primary/interior/palettes/04.gbapal"
+	.incbin "data/tilesets/primary/interior/palettes/05.gbapal"
+	.incbin "data/tilesets/primary/interior/palettes/06.gbapal"
+	.incbin "data/tilesets/primary/interior/palettes/07.gbapal"
+	.incbin "data/tilesets/primary/interior/palettes/08.gbapal"
+	.incbin "data/tilesets/primary/interior/palettes/09.gbapal"
+	.incbin "data/tilesets/primary/interior/palettes/10.gbapal"
+	.incbin "data/tilesets/primary/interior/palettes/11.gbapal"
+	.incbin "data/tilesets/primary/interior/palettes/12.gbapal"
+
+	.align 2
+gTilesetTiles_Interior::
+	.incbin "data/tilesets/primary/interior/tiles.4bpp.lz"

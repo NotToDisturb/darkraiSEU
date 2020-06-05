@@ -4430,6 +4430,16 @@
       "secondary_tileset": "gTileset_Petalburg",
       "border_filepath": "data/layouts/TheVoid/border.bin",
       "blockdata_filepath": "data/layouts/TheVoid/map.bin"
+    },
+    {
+      "id": "LAYOUT_CANALAVE_CITY_RUPERT_HOUSE",
+      "name": "CanalaveCity_RupertHouse_Layout",
+      "width": 20,
+      "height": 20,
+      "primary_tileset": "gTileset_Interior",
+      "secondary_tileset": "gTileset_GenericBuilding",
+      "border_filepath": "data/layouts/CanalaveCity_RupertHouse/border.bin",
+      "blockdata_filepath": "data/layouts/CanalaveCity_RupertHouse/map.bin"
     }
   ]
 }
