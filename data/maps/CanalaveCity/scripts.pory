@@ -11,7 +11,7 @@ const PRINPLUP = 9
 
 mapscripts CanalaveCity_MapScripts {
     MAP_SCRIPT_ON_WARP_INTO_MAP_TABLE [
-        VAR_CANALAVE_STATE, 0 {
+        VAR_CANALAVE_STATE, 1 {
             hideobjectat(PLAYER, MAP_CANALAVE_CITY)
             hideobjectat(BARRY, MAP_CANALAVE_CITY)
             hideobjectat(PRINPLUP, MAP_CANALAVE_CITY)

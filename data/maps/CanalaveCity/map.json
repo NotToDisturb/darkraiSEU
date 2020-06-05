@@ -16,7 +16,7 @@
   "object_events": [
     {
       "graphics_id": "OBJ_EVENT_GFX_RUPERT",
-      "x": 15,
+      "x": 14,
       "y": 11,
       "elevation": 3,
       "movement_type": "MOVEMENT_TYPE_NONE",
@@ -133,7 +133,13 @@
     }
   ],
   "warp_events": [
-
+    {
+      "x": 15,
+      "y": 10,
+      "elevation": 0,
+      "dest_map": "MAP_CANALAVE_CITY_RUPERT_HOUSE",
+      "dest_warp_id": 0
+    }
   ],
   "coord_events": [
 

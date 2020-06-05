@@ -4,7 +4,7 @@ CanalaveCity_MapScripts::
 	.byte 0
 
 CanalaveCity_MapScripts_MAP_SCRIPT_ON_WARP_INTO_MAP_TABLE:
-	map_script_2 VAR_CANALAVE_STATE, 0, CanalaveCity_MapScripts_MAP_SCRIPT_ON_WARP_INTO_MAP_TABLE_0
+	map_script_2 VAR_CANALAVE_STATE, 1, CanalaveCity_MapScripts_MAP_SCRIPT_ON_WARP_INTO_MAP_TABLE_0
 	map_script_2 VAR_CANALAVE_STATE, 2, CanalaveCity_MapScripts_MAP_SCRIPT_ON_WARP_INTO_MAP_TABLE_1
 	.2byte 0
 
