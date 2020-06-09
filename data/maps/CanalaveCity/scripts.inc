@@ -102,8 +102,15 @@ CanalaveCity_BeginStartingCutscene::
 	applymovement OBJ_EVENT_ID_PLAYER, WalkIntoHouse
 	applymovement 1, WalkIntoHouse
 	waitmovement OBJ_EVENT_ID_PLAYER
+	opendoor 15, 10
+	waitdooranim
+	showobjectat 1, MAP_CANALAVE_CITY
+	applymovement 1, Common_Movement_WalkUp
+	waitmovement 1
+	closedoor 15, 10
+	hideobjectat 1, MAP_CANALAVE_CITY
 	setvar VAR_CANALAVE_STATE, 2
-	warp MAP_THE_VOID, 0, 15, 12
+	warp MAP_THE_VOID, -1, 15, 12
 	end
 
 

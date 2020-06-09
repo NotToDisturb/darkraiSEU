@@ -123,3 +123,26 @@ Common_Movement_WalkRight2: @ 82725C9
 	walk_right
     walk_right
 	step_end
+    
+Common_Movement_WalkRight4: @ 82725C9
+	walk_right
+    walk_right
+    walk_right
+    walk_right
+	step_end
+    
+Common_Movement_WalkLeft: @ 82725C9
+	walk_left
+	step_end
+    
+Common_Movement_WalkLeft2: @ 82725C9
+	walk_left
+    walk_left
+	step_end
+    
+Common_Movement_WalkLeft4: @ 82725C9
+	walk_left
+    walk_left
+    walk_left
+    walk_left
+	step_end

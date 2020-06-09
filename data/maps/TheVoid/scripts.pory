@@ -1,3 +1,4 @@
+const CAMERA = OBJ_EVENT_ID_CAMERA
 const PLAYER = OBJ_EVENT_ID_PLAYER
 const DARKRAI = 1
 
@@ -13,9 +14,53 @@ mapscripts TheVoid_MapScripts {
 }
 
 script TheVoid_FirstAppear {
-    msgbox(format("{COLOR BLUE}Prinplup: {COLOR DARK_GREY}{PAUSE 8}.{PAUSE 32}.{PAUSE 32}.{PAUSE 32}"))
+    delay(8)
+    msgbox(format("{COLOR BLUE}Child: {COLOR DARK_GREY}{PAUSE 8}.{PAUSE 32}.{PAUSE 32}.{PAUSE 32}"), MSGBOX_DEFAULT)
     closemessage
+    delay(16)
+    special(SpawnCameraObject)
+    applymovement(CAMERA, Common_Movement_WalkRight4)
+    delay(16)
+    turnobject(PLAYER, DIR_EAST)
+    waitmovement(CAMERA)
+    delay(16)
+    applymovement(DARKRAI, Common_Movement_WalkLeft2)
+    waitmovement(DARKRAI)
+    setobjectnewmovementtype(DARKRAI, MOVEMENT_TYPE_WALK_SLOWLY_IN_PLACE_LEFT)
+    msgbox(format("{COLOR RED}Darkrai: {COLOR DARK_GREY}{PAUSE 8}You.{PAUSE 32} Sleep.{PAUSE 32} Now.{PAUSE 32}"), MSGBOX_DEFAULT)
+    closemessage
+    applymovement(PLAYER, Common_Movement_ExclamationMark)
+    delay(16)
+    applymovement(DARKRAI, DarkraiApproach)
+    applymovement(CAMERA, CameraCenter)
+    delay(32)
+    turnobject(PLAYER, DIR_WEST)
+    setobjectnewmovementtype(PLAYER, MOVEMENT_TYPE_WALK_IN_PLACE_LEFT)
+    waitmovement(DARKRAI)
+    applymovement(DARKRAI, DarkraiInPlace)
+    waitmovement(DARKRAI)
+    applymovement(DARKRAI, DarkraiJump)
+    delay(10)
+    special(RemoveCameraObject)
     setvar(VAR_THE_VOID_STATE, 2)
-    warp(MAP_CANALAVE_CITY, 0, 10, 5)
+    warp(MAP_CANALAVE_CITY, -1, 10, 5)
     end
+}
+
+movement CameraCenter{
+    walk_slow_left * 3
+}
+
+movement DarkraiApproach{
+    walk_left * 3
+    walk_slow_left
+}
+
+movement DarkraiInPlace{
+    walk_in_place_left * 4
+}
+
+movement DarkraiJump{
+    walk_left
+    jump_left
 }
