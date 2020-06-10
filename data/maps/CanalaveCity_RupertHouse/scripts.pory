@@ -15,7 +15,7 @@ mapscripts CanalaveCity_RupertHouse_MapScripts {
             setobjectxyperm(RUPERT, 5, 14)
             addobject(RUPERT, MAP_CANALAVE_CITY_RUPERT_HOUSE)
             
-            hideobjectat(RUPERT, MAP_CANALAVE_CITY_RUPERT_HOUSE)
+            turnobject(RUPERT, DIR_NORTH)
             setvar(VAR_CANALAVE_STATE, 5)
         }
     ]
@@ -60,13 +60,11 @@ script CanalaveCity_RupertSonIntro {
 }
 
 script CanalaveCity_RupertSonToVoid {
-    delay(16)
-    turnobject(RUPERT, DIR_NORTH)
-    showobjectat(RUPERT, MAP_CANALAVE_CITY_RUPERT_HOUSE)
     delay(8)
     applymovement(PLAYER, Common_Movement_WalkUp4)
     applymovement(RUPERT, Common_Movement_WalkUp4)
     waitmovement(PLAYER)
+    delay(8)
     turnobject(RUPERT, DIR_SOUTH)
     delay(8)
     msgbox(format("{COLOR BLUE}Rupert: {COLOR DARK_GREY}Damned Team Galactic!\n Bunch of crazy bastards!"), MSGBOX_DEFAULT)
@@ -74,17 +72,23 @@ script CanalaveCity_RupertSonToVoid {
     waitmovement(PLAYER)
     applymovement(PLAYER, Common_Movement_WalkRight4)
     applymovement(RUPERT, Common_Movement_WalkRight4)
-    delay(16)
-    message(format("{COLOR BLUE}Child: {COLOR DARK_GREY}He{PAUSE 8}.{PAUSE 16}.{PAUSE 16}.{PAUSE 16}"))
     waitmovement(RUPERT)
+    message(format("{COLOR BLUE}Child: {COLOR DARK_GREY}He{PAUSE 8}.{PAUSE 16}.{PAUSE 16}.{PAUSE 16}\pIs{PAUSE 8}.{PAUSE 16}.{PAUSE 16}.{PAUSE 16}\pWatching{PAUSE 8}.{PAUSE 16}.{PAUSE 16}.{PAUSE 16}"))
+    delay(48)
     applymovement(RUPERT, Common_Movement_ExclamationMark)
-    waitmessage
-    waitbuttonpress
     waitmovement(RUPERT)
     applymovement(PLAYER, CameraRunToSon)
     applymovement(RUPERT, RupertRunToSon)
     waitmovement(PLAYER)
-    msgbox(format("{COLOR BLUE}Child: {COLOR DARK_GREY}He{PAUSE 8}.{PAUSE 16}.{PAUSE 16}.{PAUSE 16}\pIs{PAUSE 8}.{PAUSE 16}.{PAUSE 16}.{PAUSE 16}\pWatching{PAUSE 8}.{PAUSE 16}.{PAUSE 16}.{PAUSE 16}"), MSGBOX_DEFAULT)
+    waitmessage
+    waitbuttonpress
+    closemessage
+    delay(16)
+    msgbox(format("{COLOR BLUE}Rupert: {COLOR DARK_GREY}Who is watching son? Who is it?"), MSGBOX_DEFAULT)
+    closemessage
+    delay(16)
+    msgbox(format("{COLOR BLUE}Child: {COLOR DARK_GREY}Dar{PAUSE 8}.{PAUSE 16}.{PAUSE 16}.{PAUSE 32}\nDark{PAUSE 8}.{PAUSE 16}.{PAUSE 16}.{PAUSE 16}"), MSGBOX_DEFAULT)
+    closemessage
     setvar(VAR_CANALAVE_STATE, 6)
     warp(MAP_THE_VOID, -1, 15, 12)
 }
