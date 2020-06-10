@@ -863,3 +863,14 @@ gTileset_Interior::
 	.4byte gMetatiles_Interior
 	.4byte gMetatileAttributes_Interior
 	.4byte NULL
+
+	.align 2
+gTileset_Crescent::
+	.byte TRUE @ is compressed
+	.byte TRUE @ is secondary
+	.2byte 0
+	.4byte gTilesetTiles_Crescent
+	.4byte gTilesetPalettes_Crescent
+	.4byte gMetatiles_Crescent
+	.4byte gMetatileAttributes_Crescent
+	.4byte NULL

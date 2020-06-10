@@ -61,6 +61,7 @@
 #define MAP_UNDERWATER7      (56 | (0 << 8))
 #define MAP_CANALAVE_CITY    (57 | (0 << 8))
 #define MAP_THE_VOID         (58 | (0 << 8))
+#define MAP_CRESCENT_CITY    (59 | (0 << 8))
 
 // Map Group 1
 #define MAP_LITTLEROOT_TOWN_BRENDANS_HOUSE_1F    (0 | (1 << 8))

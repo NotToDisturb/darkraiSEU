@@ -1065,3 +1065,5 @@ Common_EventScript_LegendaryFlewAway:: @ 8273776
 	.include "data/maps/TheVoid/scripts.inc"
 
 	.include "data/maps/CanalaveCity_RupertHouse/scripts.inc"
+
+	.include "data/maps/CrescentCity/scripts.inc"

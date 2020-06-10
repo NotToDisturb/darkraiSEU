@@ -579,3 +579,10 @@ gMetatiles_Interior::
 	.align 1
 gMetatileAttributes_Interior::
 	.incbin "data/tilesets/primary/interior/metatile_attributes.bin"
+	.align 1
+gMetatiles_Crescent::
+	.incbin "data/tilesets/secondary/crescent/metatiles.bin"
+
+	.align 1
+gMetatileAttributes_Crescent::
+	.incbin "data/tilesets/secondary/crescent/metatile_attributes.bin"
