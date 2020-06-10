@@ -1,1 +1,59 @@
-mapscripts CanalaveCity_RupertHouse_MapScripts {}
+const PLAYER = OBJ_EVENT_ID_PLAYER
+const CHILD = 1
+const RUPERT = 2
+
+mapscripts CanalaveCity_RupertHouse_MapScripts {
+    MAP_SCRIPT_ON_WARP_INTO_MAP_TABLE [
+        VAR_CANALAVE_STATE, 0 {
+            hideobjectat(PLAYER, MAP_CANALAVE_CITY_RUPERT_HOUSE)
+            setvar(VAR_CANALAVE_STATE, 1)
+        }
+        VAR_CANALAVE_STATE, 6 {
+            hideobjectat(PLAYER, MAP_CANALAVE_CITY_RUPERT_HOUSE)
+            setvar(VAR_CANALAVE_STATE, 7)
+        }
+    ]
+    MAP_SCRIPT_ON_FRAME_TABLE [
+        VAR_CANALAVE_STATE, 1: CanalaveCity_RupertSonIntro
+        VAR_CANALAVE_STATE, 7: CanalaveCity_RupertSonToVoid
+    ]
+}
+
+script CanalaveCity_RupertSonIntro {
+    msgbox(format("{COLOR BLUE}Rupert: {COLOR DARK_GREY}He's been sleeping for two entire days{PAUSE 4}.{PAUSE 8}.{PAUSE 8}.{PAUSE 8}\pMy boy, what is happening to you."), MSGBOX_DEFAULT)
+    closemessage
+    delay(16)
+    msgbox(format("{COLOR BLUE}Child: {COLOR DARK_GREY}{PAUSE 8}.{PAUSE 32}.{PAUSE 32}.{PAUSE 32}"), MSGBOX_DEFAULT)
+    closemessage
+    delay(16)
+    msgbox(format("{COLOR BLUE}Rupert: {COLOR DARK_GREY}I have to go get help,{PAUSE 8} surely Nurse Joy will know what to do."), MSGBOX_DEFAULT)
+    closemessage
+    delay(16)
+    applymovement(PLAYER, Common_Movement_WalkLeft)
+    waitmovement(PLAYER)
+    applymovement(RUPERT, Common_Movement_WalkLeft4)
+    applymovement(PLAYER, Common_Movement_WalkLeft4)
+    waitmovement(PLAYER)
+    delay(8)
+    turnobject(RUPERT, DIR_EAST)
+    delay(16)
+    msgbox(format("{COLOR BLUE}Rupert: {COLOR DARK_GREY}You hold on now, okay?"), MSGBOX_DEFAULT)
+    closemessage
+    delay(16)
+    applymovement(PLAYER, Common_Movement_WalkLeft4)
+    applymovement(RUPERT, Common_Movement_WalkLeft4)
+    waitmovement(PLAYER)
+    applymovement(PLAYER, Common_Movement_WalkDown4)
+    applymovement(RUPERT, Common_Movement_WalkDown4)
+    waitmovement(PLAYER)
+    delay(16)
+    removeobject(RUPERT, MAP_CANALAVE_CITY_RUPERT_HOUSE)
+    delay(16)
+    setvar(VAR_CANALAVE_STATE, 2)
+    warp(MAP_CANALAVE_CITY, -1, 15, 11)
+}
+
+script CanalaveCity_RupertSonToVoid {
+    setvar(VAR_CANALAVE_STATE, 8)
+    warp(MAP_THE_VOID, -1, 15, 12)
+}

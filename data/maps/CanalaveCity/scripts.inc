@@ -4,8 +4,8 @@ CanalaveCity_MapScripts::
 	.byte 0
 
 CanalaveCity_MapScripts_MAP_SCRIPT_ON_WARP_INTO_MAP_TABLE:
-	map_script_2 VAR_CANALAVE_STATE, 0, CanalaveCity_MapScripts_MAP_SCRIPT_ON_WARP_INTO_MAP_TABLE_0
-	map_script_2 VAR_CANALAVE_STATE, 2, CanalaveCity_MapScripts_MAP_SCRIPT_ON_WARP_INTO_MAP_TABLE_1
+	map_script_2 VAR_CANALAVE_STATE, 2, CanalaveCity_MapScripts_MAP_SCRIPT_ON_WARP_INTO_MAP_TABLE_0
+	map_script_2 VAR_CANALAVE_STATE, 4, CanalaveCity_MapScripts_MAP_SCRIPT_ON_WARP_INTO_MAP_TABLE_1
 	.2byte 0
 
 CanalaveCity_MapScripts_MAP_SCRIPT_ON_WARP_INTO_MAP_TABLE_0:
@@ -13,7 +13,7 @@ CanalaveCity_MapScripts_MAP_SCRIPT_ON_WARP_INTO_MAP_TABLE_0:
 	hideobjectat 1, MAP_CANALAVE_CITY
 	hideobjectat 8, MAP_CANALAVE_CITY
 	hideobjectat 9, MAP_CANALAVE_CITY
-	setvar VAR_CANALAVE_STATE, 1
+	setvar VAR_CANALAVE_STATE, 3
 	return
 
 CanalaveCity_MapScripts_MAP_SCRIPT_ON_WARP_INTO_MAP_TABLE_1:
@@ -31,12 +31,12 @@ CanalaveCity_MapScripts_MAP_SCRIPT_ON_WARP_INTO_MAP_TABLE_1:
 	removeobject 3, MAP_CANALAVE_CITY
 	setobjectxyperm 3, 16, 15
 	addobject 3, MAP_CANALAVE_CITY
-	setvar VAR_CANALAVE_STATE, 3
+	setvar VAR_CANALAVE_STATE, 5
 	return
 
 CanalaveCity_MapScripts_MAP_SCRIPT_ON_FRAME_TABLE:
-	map_script_2 VAR_CANALAVE_STATE, 1, CanalaveCity_BeginStartingCutscene
-	map_script_2 VAR_CANALAVE_STATE, 3, CanalaveCity_BarrySavesTheDay
+	map_script_2 VAR_CANALAVE_STATE, 3, CanalaveCity_BeginStartingCutscene
+	map_script_2 VAR_CANALAVE_STATE, 5, CanalaveCity_BarrySavesTheDay
 	.2byte 0
 
 
@@ -109,8 +109,8 @@ CanalaveCity_BeginStartingCutscene::
 	waitmovement 1
 	closedoor 15, 10
 	hideobjectat 1, MAP_CANALAVE_CITY
-	setvar VAR_CANALAVE_STATE, 2
-	warp MAP_THE_VOID, -1, 15, 12
+	setvar VAR_CANALAVE_STATE, 4
+	warp MAP_CANALAVE_CITY_RUPERT_HOUSE, -1, 5, 14
 	end
 
 
@@ -320,7 +320,7 @@ CanalaveCity_BarrySavesTheDay::
 	applymovement 8, Common_Movement_WalkRight2
 	applymovement 9, Common_Movement_WalkRight2
 	waitmovement OBJ_EVENT_ID_PLAYER
-	setvar VAR_CANALAVE_STATE, 4
+	setvar VAR_CANALAVE_STATE, 6
 	releaseall
 	end
 

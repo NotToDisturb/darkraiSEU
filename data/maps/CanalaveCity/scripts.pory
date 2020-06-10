@@ -11,14 +11,14 @@ const PRINPLUP = 9
 
 mapscripts CanalaveCity_MapScripts {
     MAP_SCRIPT_ON_WARP_INTO_MAP_TABLE [
-        VAR_CANALAVE_STATE, 0 {
+        VAR_CANALAVE_STATE, 2 {
             hideobjectat(PLAYER, MAP_CANALAVE_CITY)
             hideobjectat(RUPERT, MAP_CANALAVE_CITY)
             hideobjectat(BARRY, MAP_CANALAVE_CITY)
             hideobjectat(PRINPLUP, MAP_CANALAVE_CITY)
-            setvar(VAR_CANALAVE_STATE, 1)
+            setvar(VAR_CANALAVE_STATE, 3)
         }
-        VAR_CANALAVE_STATE, 2 {
+        VAR_CANALAVE_STATE, 4 {
             hideobjectat(PLAYER, MAP_CANALAVE_CITY)
             hideobjectat(RUPERT, MAP_CANALAVE_CITY)
             hideobjectat(BEN, MAP_CANALAVE_CITY)
@@ -40,12 +40,12 @@ mapscripts CanalaveCity_MapScripts {
             //setobjectmovementtype(GRUNT_3, MOVEMENT_TYPE_WANDER_LEFT_AND_RIGHT)
             addobject(GRUNT_3, MAP_CANALAVE_CITY)
             
-            setvar(VAR_CANALAVE_STATE, 3)
+            setvar(VAR_CANALAVE_STATE, 5)
         }
     ]
     MAP_SCRIPT_ON_FRAME_TABLE [
-        VAR_CANALAVE_STATE, 1: CanalaveCity_BeginStartingCutscene
-        VAR_CANALAVE_STATE, 3: CanalaveCity_BarrySavesTheDay
+        VAR_CANALAVE_STATE, 3: CanalaveCity_BeginStartingCutscene
+        VAR_CANALAVE_STATE, 5: CanalaveCity_BarrySavesTheDay
     ]
 }
 
@@ -118,8 +118,8 @@ script CanalaveCity_BeginStartingCutscene {
     waitmovement(RUPERT)
     closedoor(15, 10)
     hideobjectat(RUPERT, MAP_CANALAVE_CITY)
-    setvar(VAR_CANALAVE_STATE, 2)
-    warp(MAP_THE_VOID, -1, 15, 12)
+    setvar(VAR_CANALAVE_STATE, 4)
+    warp(MAP_CANALAVE_CITY_RUPERT_HOUSE, -1, 5, 14)
     end
 }
 
@@ -318,7 +318,7 @@ script CanalaveCity_BarrySavesTheDay {
     applymovement(BARRY, Common_Movement_WalkRight2)
     applymovement(PRINPLUP, Common_Movement_WalkRight2)
     waitmovement(PLAYER)
-    setvar(VAR_CANALAVE_STATE, 4)
+    setvar(VAR_CANALAVE_STATE, 6)
     releaseall
     end
 }
