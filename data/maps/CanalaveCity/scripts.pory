@@ -18,7 +18,7 @@ mapscripts CanalaveCity_MapScripts {
             hideobjectat(PRINPLUP, MAP_CANALAVE_CITY)
             setvar(VAR_CANALAVE_STATE, 3)
         }
-        VAR_CANALAVE_STATE, 4 {
+        VAR_CANALAVE_STATE, 6 {
             hideobjectat(PLAYER, MAP_CANALAVE_CITY)
             hideobjectat(RUPERT, MAP_CANALAVE_CITY)
             hideobjectat(BEN, MAP_CANALAVE_CITY)
@@ -40,7 +40,7 @@ mapscripts CanalaveCity_MapScripts {
             //setobjectmovementtype(GRUNT_3, MOVEMENT_TYPE_WANDER_LEFT_AND_RIGHT)
             addobject(GRUNT_3, MAP_CANALAVE_CITY)
             
-            setvar(VAR_CANALAVE_STATE, 5)
+            setvar(VAR_CANALAVE_STATE, 7)
         }
     ]
     MAP_SCRIPT_ON_FRAME_TABLE [
@@ -119,7 +119,7 @@ script CanalaveCity_BeginStartingCutscene {
     closedoor(15, 10)
     hideobjectat(RUPERT, MAP_CANALAVE_CITY)
     setvar(VAR_CANALAVE_STATE, 4)
-    warp(MAP_CANALAVE_CITY_RUPERT_HOUSE, -1, 5, 14)
+    warp(MAP_CANALAVE_CITY_RUPERT_HOUSE, 0, 5, 14)
     end
 }
 

@@ -5,7 +5,7 @@ CanalaveCity_MapScripts::
 
 CanalaveCity_MapScripts_MAP_SCRIPT_ON_WARP_INTO_MAP_TABLE:
 	map_script_2 VAR_CANALAVE_STATE, 2, CanalaveCity_MapScripts_MAP_SCRIPT_ON_WARP_INTO_MAP_TABLE_0
-	map_script_2 VAR_CANALAVE_STATE, 4, CanalaveCity_MapScripts_MAP_SCRIPT_ON_WARP_INTO_MAP_TABLE_1
+	map_script_2 VAR_CANALAVE_STATE, 6, CanalaveCity_MapScripts_MAP_SCRIPT_ON_WARP_INTO_MAP_TABLE_1
 	.2byte 0
 
 CanalaveCity_MapScripts_MAP_SCRIPT_ON_WARP_INTO_MAP_TABLE_0:
@@ -31,7 +31,7 @@ CanalaveCity_MapScripts_MAP_SCRIPT_ON_WARP_INTO_MAP_TABLE_1:
 	removeobject 3, MAP_CANALAVE_CITY
 	setobjectxyperm 3, 16, 15
 	addobject 3, MAP_CANALAVE_CITY
-	setvar VAR_CANALAVE_STATE, 5
+	setvar VAR_CANALAVE_STATE, 7
 	return
 
 CanalaveCity_MapScripts_MAP_SCRIPT_ON_FRAME_TABLE:
@@ -110,7 +110,7 @@ CanalaveCity_BeginStartingCutscene::
 	closedoor 15, 10
 	hideobjectat 1, MAP_CANALAVE_CITY
 	setvar VAR_CANALAVE_STATE, 4
-	warp MAP_CANALAVE_CITY_RUPERT_HOUSE, -1, 5, 14
+	warp MAP_CANALAVE_CITY_RUPERT_HOUSE, 0, 5, 14
 	end
 
 

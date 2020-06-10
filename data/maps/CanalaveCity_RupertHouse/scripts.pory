@@ -8,14 +8,20 @@ mapscripts CanalaveCity_RupertHouse_MapScripts {
             hideobjectat(PLAYER, MAP_CANALAVE_CITY_RUPERT_HOUSE)
             setvar(VAR_CANALAVE_STATE, 1)
         }
-        VAR_CANALAVE_STATE, 6 {
+        VAR_CANALAVE_STATE, 4 {
             hideobjectat(PLAYER, MAP_CANALAVE_CITY_RUPERT_HOUSE)
-            setvar(VAR_CANALAVE_STATE, 7)
+            
+            removeobject(RUPERT, MAP_CANALAVE_CITY_RUPERT_HOUSE)
+            setobjectxyperm(RUPERT, 5, 14)
+            addobject(RUPERT, MAP_CANALAVE_CITY_RUPERT_HOUSE)
+            
+            hideobjectat(RUPERT, MAP_CANALAVE_CITY_RUPERT_HOUSE)
+            setvar(VAR_CANALAVE_STATE, 5)
         }
     ]
     MAP_SCRIPT_ON_FRAME_TABLE [
         VAR_CANALAVE_STATE, 1: CanalaveCity_RupertSonIntro
-        VAR_CANALAVE_STATE, 7: CanalaveCity_RupertSonToVoid
+        VAR_CANALAVE_STATE, 5: CanalaveCity_RupertSonToVoid
     ]
 }
 
@@ -54,6 +60,39 @@ script CanalaveCity_RupertSonIntro {
 }
 
 script CanalaveCity_RupertSonToVoid {
-    setvar(VAR_CANALAVE_STATE, 8)
+    delay(16)
+    turnobject(RUPERT, DIR_NORTH)
+    showobjectat(RUPERT, MAP_CANALAVE_CITY_RUPERT_HOUSE)
+    delay(8)
+    applymovement(PLAYER, Common_Movement_WalkUp4)
+    applymovement(RUPERT, Common_Movement_WalkUp4)
+    waitmovement(PLAYER)
+    turnobject(RUPERT, DIR_SOUTH)
+    delay(8)
+    msgbox(format("{COLOR BLUE}Rupert: {COLOR DARK_GREY}Damned Team Galactic!\n Bunch of crazy bastards!"), MSGBOX_DEFAULT)
+    closemessage
+    waitmovement(PLAYER)
+    applymovement(PLAYER, Common_Movement_WalkRight4)
+    applymovement(RUPERT, Common_Movement_WalkRight4)
+    delay(16)
+    message(format("{COLOR BLUE}Child: {COLOR DARK_GREY}He{PAUSE 8}.{PAUSE 16}.{PAUSE 16}.{PAUSE 16}"))
+    waitmovement(RUPERT)
+    applymovement(RUPERT, Common_Movement_ExclamationMark)
+    waitmessage
+    waitbuttonpress
+    waitmovement(RUPERT)
+    applymovement(PLAYER, CameraRunToSon)
+    applymovement(RUPERT, RupertRunToSon)
+    waitmovement(PLAYER)
+    msgbox(format("{COLOR BLUE}Child: {COLOR DARK_GREY}He{PAUSE 8}.{PAUSE 16}.{PAUSE 16}.{PAUSE 16}\pIs{PAUSE 8}.{PAUSE 16}.{PAUSE 16}.{PAUSE 16}\pWatching{PAUSE 8}.{PAUSE 16}.{PAUSE 16}.{PAUSE 16}"), MSGBOX_DEFAULT)
+    setvar(VAR_CANALAVE_STATE, 6)
     warp(MAP_THE_VOID, -1, 15, 12)
+}
+
+movement RupertRunToSon{
+    walk_fast_right * 4
+}
+
+movement CameraRunToSon{
+    walk_fast_right * 5
 }
